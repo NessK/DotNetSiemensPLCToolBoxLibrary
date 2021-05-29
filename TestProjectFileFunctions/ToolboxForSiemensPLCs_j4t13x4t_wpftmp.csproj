@@ -1,0 +1,89 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <GenerateErrorForMissingTargetingPacks>false</GenerateErrorForMissingTargetingPacks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net461</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetSiemensPLCToolBoxLibrary.TIAV13\DotNetSiemensPLCToolBoxLibrary.TIAV13.csproj" />
+    <ProjectReference Include="..\DotNetSiemensPLCToolBoxLibrary.TIAV14SP1\DotNetSiemensPLCToolBoxLibrary.TIAV14SP1.csproj" />
+    <ProjectReference Include="..\DotNetSiemensPLCToolBoxLibrary.TIAV15\DotNetSiemensPLCToolBoxLibrary.TIAV15.csproj" />
+    <ProjectReference Include="..\DotNetSiemensPLCToolBoxLibrary.TIAV15_1\DotNetSiemensPLCToolBoxLibrary.TIAV15_1.csproj" />
+    <ProjectReference Include="..\LibNoDaveConnectionLibrary.WinForms\DotNetSiemensPLCToolBoxLibrary.WinForms.csproj" />
+    <ProjectReference Include="..\LibNoDaveConnectionLibrary\DotNetSiemensPLCToolBoxLibrary.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="DataBlockValueSaver.resx">
+      <DependentUpon>DataBlockValueSaver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DBStructresizer.resx">
+      <DependentUpon>DBStructresizer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DownloadBlock.resx">
+      <DependentUpon>DownloadBlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Features.resx">
+      <DependentUpon>Features.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TelegrammSimulator.resx">
+      <DependentUpon>TelegrammSimulator.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ReferencePath Include="C:\Users\nessk\source\repos\NessK\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\bin\Debug\net45\DotNetSiemensPLCToolBoxLibrary.dll" />
+    <ReferencePath Include="C:\Users\nessk\source\repos\NessK\DotNetSiemensPLCToolBoxLibrary\DotNetSiemensPLCToolBoxLibrary.TIAV13\bin\Debug\net45\DotNetSiemensPLCToolBoxLibrary.TIAV13.dll" />
+    <ReferencePath Include="C:\Users\nessk\source\repos\NessK\DotNetSiemensPLCToolBoxLibrary\DotNetSiemensPLCToolBoxLibrary.TIAV14SP1\bin\Debug\net461\DotNetSiemensPLCToolBoxLibrary.TIAV14SP1.dll" />
+    <ReferencePath Include="C:\Users\nessk\source\repos\NessK\DotNetSiemensPLCToolBoxLibrary\DotNetSiemensPLCToolBoxLibrary.TIAV15\bin\Debug\net461\DotNetSiemensPLCToolBoxLibrary.TIAV15.dll" />
+    <ReferencePath Include="C:\Users\nessk\source\repos\NessK\DotNetSiemensPLCToolBoxLibrary\DotNetSiemensPLCToolBoxLibrary.TIAV15_1\bin\Debug\net461\DotNetSiemensPLCToolBoxLibrary.TIAV15_1.dll" />
+    <ReferencePath Include="C:\Users\nessk\source\repos\NessK\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary.WinForms\bin\Debug\net45\DotNetSiemensPLCToolBoxLibrary.WinForms.dll" />
+    <ReferencePath Include="C:\Users\nessk\.nuget\packages\sharpziplib\1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll" />
+    <ReferencePath Include="C:\Users\nessk\source\repos\NessK\DotNetSiemensPLCToolBoxLibrary\externalDlls\Interop.HMIGENOBJECTSLib.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\mscorlib.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Drawing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.IO.Compression.FileSystem.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Numerics.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Runtime.Serialization.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Windows.Controls.Ribbon.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Windows.Forms.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\UIAutomationClient.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\UIAutomationClientsideProviders.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\UIAutomationProvider.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\UIAutomationTypes.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\WindowsBase.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\WindowsFormsIntegration.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C:\Users\nessk\source\repos\NessK\DotNetSiemensPLCToolBoxLibrary\TestProjectFileFunctions\obj\Debug\net461\DataBlockViewControl.g.cs" />
+    <Compile Include="C:\Users\nessk\source\repos\NessK\DotNetSiemensPLCToolBoxLibrary\TestProjectFileFunctions\obj\Debug\net461\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
+</Project>

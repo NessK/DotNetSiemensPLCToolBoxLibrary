@@ -36,6 +36,12 @@ namespace JFK_VarTab
 {
     public partial class Form1 : Form
     {
+
+        int CP_Slot = 2;
+        int CP_Rack = 0;
+        int CP_MPI = 0;
+        string CP_IP = "0";
+
         public Form1()
         {
             InitializeComponent();
@@ -44,6 +50,7 @@ namespace JFK_VarTab
             treeStep7Project.AllowDrop = true;
             treeStep7Project.DragDrop += TreeStep7Project_DragDrop;
             treeStep7Project.DragOver += TreeStep7Project_DragOver;
+
         }
 
         private void TreeStep7Project_DragOver(object sender, System.Windows.Forms.DragEventArgs e)
@@ -55,7 +62,7 @@ namespace JFK_VarTab
         {
             var dropped = ((string[])e.Data.GetData(System.Windows.Forms.DataFormats.FileDrop));
             var files = dropped.ToList();
-            foreach(var file in files)
+            foreach (var file in files)
             {
                 loadPrj(file);
             }
@@ -65,14 +72,6 @@ namespace JFK_VarTab
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            tableLayoutPanelVisu.ColumnStyles[1].Width = 0;
-
-            lstConnections.Items.Clear();
-            var itms = PLCConnectionConfiguration.GetConfigurationNames();
-            if (itms != null) lstConnections.Items.AddRange(itms);
-
-            if (lstConnections.Items.Count > 0) lstConnections.SelectedItem = lstConnections.Items[0];
-
 
             //try
             //{
@@ -103,6 +102,7 @@ namespace JFK_VarTab
 
         public void AddNodes(TreeNode nd, List<ProjectFolder> lst)
         {
+
             foreach (var subitem in lst)
             {
                 myTreeNode tmpNode = new myTreeNode();
@@ -111,19 +111,22 @@ namespace JFK_VarTab
                 tmpNode.ImageIndex = 0;
                 //nd.ImageKey
                 //Set the Image for the Folders...
-                if (subitem.GetType() == typeof (StationConfigurationFolder))
+
+                if (subitem.GetType() == typeof(StationConfigurationFolder))
                 {
-                    if (((StationConfigurationFolder) subitem).StationType == PLCType.Simatic300)
+                    if (((StationConfigurationFolder)subitem).StationType == PLCType.Simatic300)
                         tmpNode.ImageIndex = 4;
-                    else if (((StationConfigurationFolder) subitem).StationType == PLCType.Simatic400 ||
-                             ((StationConfigurationFolder) subitem).StationType == PLCType.Simatic400H)
+
+                    else if (((StationConfigurationFolder)subitem).StationType == PLCType.Simatic400 ||
+                             ((StationConfigurationFolder)subitem).StationType == PLCType.Simatic400H)
+
                         tmpNode.ImageIndex = 5;
                 }
-                else if (subitem.GetType() == typeof (CPUFolder))
+                else if (subitem.GetType() == typeof(CPUFolder))
                 {
-                    if (((CPUFolder) subitem).CpuType == PLCType.Simatic300) tmpNode.ImageIndex = 2;
-                    else if (((CPUFolder) subitem).CpuType == PLCType.Simatic400 ||
-                             ((CPUFolder) subitem).CpuType == PLCType.Simatic400H) tmpNode.ImageIndex = 3;
+                    if (((CPUFolder)subitem).CpuType == PLCType.Simatic300) tmpNode.ImageIndex = 2;
+                    else if (((CPUFolder)subitem).CpuType == PLCType.Simatic400 ||
+                             ((CPUFolder)subitem).CpuType == PLCType.Simatic400H) tmpNode.ImageIndex = 3;
                 }
 
                 nd.Nodes.Add(tmpNode);
@@ -221,18 +224,18 @@ namespace JFK_VarTab
 
             if (treeStep7Project.SelectedNode != null)
             {
-                ProjectFolder fld = (ProjectFolder) ((myTreeNode) treeStep7Project.SelectedNode).myObject;
+                ProjectFolder fld = (ProjectFolder)((myTreeNode)treeStep7Project.SelectedNode).myObject;
                 lblProjectName.Text = fld.Project.ProjectName;
                 lblProjectInfo.Text = fld.Project.ProjectDescription;
 
 
-                var tmp = (myTreeNode) treeStep7Project.SelectedNode;
+                var tmp = (myTreeNode)treeStep7Project.SelectedNode;
                 if (tmp.myObject is IBlocksFolder)
-                    blkFld = (IBlocksFolder) tmp.myObject;
+                    blkFld = (IBlocksFolder)tmp.myObject;
 
                 if (tmp.myObject is ISymbolTable)
                 {
-                    var tmp2 = (ISymbolTable) tmp.myObject;
+                    var tmp2 = (ISymbolTable)tmp.myObject;
 
                     if (oldNode != treeStep7Project.SelectedNode)
                     {
@@ -266,7 +269,7 @@ namespace JFK_VarTab
                 }
                 else if (tmp.myObject is MasterSystem)
                 {
-                    var tmp2 = (MasterSystem) tmp.myObject;
+                    var tmp2 = (MasterSystem)tmp.myObject;
 
                     if (oldNode != treeStep7Project.SelectedNode)
                     {
@@ -274,7 +277,7 @@ namespace JFK_VarTab
                         dtaPnPbList.Rows.Clear();
                         foreach (var s in tmp2.Children)
                         {
-                            dtaPnPbList.Rows.Add(new object[] {s.NodeId, s.Name,});
+                            dtaPnPbList.Rows.Add(new object[] { s.NodeId, s.Name, });
                         }
                     }
                     dtaPnPbList.Visible = true;
@@ -291,8 +294,8 @@ namespace JFK_VarTab
                     }
                     viewBlockList.Visible = true;
 
-                    if (tmp.myObject.GetType() == typeof (BlocksOfflineFolder))
-                        lblToolStripFileSystemFolder.Text = ((BlocksOfflineFolder) blkFld).Folder;
+                    if (tmp.myObject.GetType() == typeof(BlocksOfflineFolder))
+                        lblToolStripFileSystemFolder.Text = ((BlocksOfflineFolder)blkFld).Folder;
                 }
                 //else if (tmp.myObject is TIAProjectFolder)
                 //{
@@ -306,9 +309,9 @@ namespace JFK_VarTab
                 //    }
                 //    viewBlockList.Visible = true;
                 //}
-                else if (tmp.myObject.GetType() == typeof (SourceFolder))
+                else if (tmp.myObject.GetType() == typeof(SourceFolder))
                 {
-                    src = (SourceFolder) tmp.myObject;
+                    src = (SourceFolder)tmp.myObject;
                     if (oldNode != treeStep7Project.SelectedNode)
                     {
                         lstListBox.Items.Clear();
@@ -346,6 +349,7 @@ namespace JFK_VarTab
                         var rd = new StringReader(cp.ToString());
                         string line = null;
                         while ((line = rd.ReadLine()) != null)
+
                         {
                             lstListBox.Items.Add(line);
                         }
@@ -371,16 +375,16 @@ namespace JFK_VarTab
             {
                 viewBlockList.Visible = false;
 
-                lblStatus.Text = ((ProjectBlockInfo) lstListBox.SelectedItem).ToString();
+                lblStatus.Text = ((ProjectBlockInfo)lstListBox.SelectedItem).ToString();
 
                 Block tmp;
                 if (blkFld is BlocksOfflineFolder)
-                    tmp = ((BlocksOfflineFolder) blkFld).GetBlock((ProjectBlockInfo) lstListBox.SelectedItem,
+                    tmp = ((BlocksOfflineFolder)blkFld).GetBlock((ProjectBlockInfo)lstListBox.SelectedItem,
                         new S7ConvertingOptions(MnemonicLanguage.German)
                         {
                             GenerateCallsfromUCs = convertCallsToolStripMenuItem.Checked
                         });
-                else tmp = blkFld.GetBlock((ProjectBlockInfo) lstListBox.SelectedItem);
+                else tmp = blkFld.GetBlock((ProjectBlockInfo)lstListBox.SelectedItem);
 
                 if (tmp != null)
                 {
@@ -388,7 +392,7 @@ namespace JFK_VarTab
                         tmp.BlockType == PLCBlockType.S5_DV || tmp.BlockType == PLCBlockType.S5_DB)
                     {
                         //dataBlockViewControl.DataBlockRows = ((PLCDataBlock) tmp).Structure;
-                        myBlk = (IDataBlock) tmp;
+                        myBlk = (IDataBlock)tmp;
                         //expRow = myBlk.Structure;
                         //if (mnuExpandDatablockArrays.Checked)
                         //    expRow = myBlk.GetArrayExpandedStructure(new S7DataBlockExpandOptions() { ExpandCharArrays = false });
@@ -407,9 +411,9 @@ namespace JFK_VarTab
                 }
 
             }
-            else if (lstListBox.SelectedItem.GetType() == typeof (S7ProjectSourceInfo))
+            else if (lstListBox.SelectedItem.GetType() == typeof(S7ProjectSourceInfo))
             {
-                var tmp = (S7ProjectSourceInfo) lstListBox.SelectedItem;
+                var tmp = (S7ProjectSourceInfo)lstListBox.SelectedItem;
 
                 if (tmp != null)
                 {
@@ -429,11 +433,11 @@ namespace JFK_VarTab
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstListBox.SelectedItem != null)
-                if (lstListBox.SelectedItem.GetType() == typeof (S7ProjectBlockInfo))
+                if (lstListBox.SelectedItem.GetType() == typeof(S7ProjectBlockInfo))
                 {
-                    var tmp = (S7ProjectBlockInfo) lstListBox.SelectedItem;
+                    var tmp = (S7ProjectBlockInfo)lstListBox.SelectedItem;
                     if (tmp.BlockType == PLCBlockType.DB) tableLayoutPanelVisu.ColumnStyles[1].Width = 255;
-                        //grpVisu.Visible = true;
+                    //grpVisu.Visible = true;
                     else
                         //grpVisu.Visible = false;
                         tableLayoutPanelVisu.ColumnStyles[1].Width = 0;
@@ -450,20 +454,13 @@ namespace JFK_VarTab
                 }
         }
 
-        /*
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            loadPrj();
-        }
-        */
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (lstListBox.SelectedItem != null)
-                if (lstListBox.SelectedItem.GetType() == typeof (S7ProjectBlockInfo))
+                if (lstListBox.SelectedItem.GetType() == typeof(S7ProjectBlockInfo))
                 {
-                    ((BlocksOfflineFolder) blkFld).ChangeKnowHowProtection(
-                        (S7ProjectBlockInfo) lstListBox.SelectedItem, true);
+                    ((BlocksOfflineFolder)blkFld).ChangeKnowHowProtection(
+                        (S7ProjectBlockInfo)lstListBox.SelectedItem, true);
                     lstListBox.Items.Clear();
                     lstListBox.Items.AddRange(blkFld.readPlcBlocksList().ToArray());
                 }
@@ -473,10 +470,10 @@ namespace JFK_VarTab
         private void button3_Click(object sender, EventArgs e)
         {
             if (lstListBox.SelectedItem != null)
-                if (lstListBox.SelectedItem.GetType() == typeof (S7ProjectBlockInfo))
+                if (lstListBox.SelectedItem.GetType() == typeof(S7ProjectBlockInfo))
                 {
-                    ((BlocksOfflineFolder) blkFld).ChangeKnowHowProtection(
-                        (S7ProjectBlockInfo) lstListBox.SelectedItem, false);
+                    ((BlocksOfflineFolder)blkFld).ChangeKnowHowProtection(
+                        (S7ProjectBlockInfo)lstListBox.SelectedItem, false);
                     lstListBox.Items.Clear();
                     lstListBox.Items.AddRange(blkFld.readPlcBlocksList().ToArray());
                 }
@@ -489,9 +486,9 @@ namespace JFK_VarTab
             //This Button is not showed, because it does not work.
             //After undeleteion of a Block you have to recreate the mdx File of the database, and this needs to be implemented
             if (lstListBox.SelectedItem != null)
-                if (lstListBox.SelectedItem.GetType() == typeof (S7ProjectBlockInfo))
+                if (lstListBox.SelectedItem.GetType() == typeof(S7ProjectBlockInfo))
                 {
-                    ((BlocksOfflineFolder) blkFld).UndeleteBlock((S7ProjectBlockInfo) lstListBox.SelectedItem,
+                    ((BlocksOfflineFolder)blkFld).UndeleteBlock((S7ProjectBlockInfo)lstListBox.SelectedItem,
                         Convert.ToInt32(txtUndeleteName.Text));
                     treeView1_AfterSelect(sender, null);
                 }
@@ -507,84 +504,7 @@ namespace JFK_VarTab
             if (treeStep7Project.SelectedNode != null) treeView1_AfterSelect(sender, null);
         }
 
-        private void cmdCreateFlexibleErrorMessages_Click(object sender, EventArgs e)
-        {
-            S7DataBlock myDB =
-                (S7DataBlock) ((BlocksOfflineFolder) blkFld).GetBlock((S7ProjectBlockInfo) lstListBox.SelectedItem);
 
-            int cnt = 0;
-
-            if (myDB.Structure != null && myDB.Structure.Children != null)
-                cnt =
-                    ((S7DataRow) myDB.Structure.Children[myDB.Structure.Children.Count - 1]).NextBlockAddress
-                        .ByteAddress;
-
-            string varname = txtConnectionName.Text + "_" + "STOERUNGEN_DB" + myDB.BlockNumber;
-
-            string tags = varname + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBW 0;Int;;" +
-                          ((cnt - 2)/2).ToString() + ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
-
-            string errors = "";
-
-            int errNr = Convert.ToInt32(txtStartErrorNumber.Text);
-
-            foreach (S7DataRow plcDataRow in S7DataRow.GetChildrowsAsList(((S7DataRow) myDB.Structure)))
-                // myDB.GetRowsAsList())
-            {
-                if (plcDataRow.DataType == S7DataRowType.BOOL)
-                {
-                    ByteBitAddress akAddr = plcDataRow.BlockAddress;
-
-                    int bitnr = (akAddr.ByteAddress/2)*16 + akAddr.BitAddress; //akAddr.BitAddress;
-                    if (akAddr.ByteAddress%2 == 0) bitnr += 8;
-
-                    string stoeTxt = "";
-                    string stoeTxtEn = "";
-
-                    stoeTxt = plcDataRow.Comment;
-
-                    if (chkCombineStructComments.Checked)
-                    {
-                        var par = plcDataRow.Parent;
-                        while (par != null)
-                        {
-                            stoeTxt = par.Comment + stoeTxt;
-                            par = par.Parent;
-                        }
-                    }
-
-
-                    if (stoeTxt.Contains(";"))
-                    {
-                        stoeTxt = "Störort: " + stoeTxt.Split(';')[0] + ", " + stoeTxt.Split(';')[1];
-                    }
-
-                    if (chkFixedErrorNumber.Checked)
-                        errNr = Convert.ToInt32(txtStartErrorNumber.Text) + akAddr.ByteAddress*8 + akAddr.BitAddress;
-                    errors += "\"D\"\t\"" + errNr.ToString() + "\"\t\"Alarms\"\t\"" + varname + "\"\t\"" +
-                              bitnr.ToString() + "\"\t\t\t\t\t\t\"0\"\t\"de-DE=" + stoeTxt + "\"\t\"en-US=" + stoeTxtEn +
-                              "\"\t\"de-DE=\"" + "\r\n";
-                    if (!chkFixedErrorNumber.Checked) errNr++;
-                }
-            }
-
-            FolderBrowserDialog fldDlg = null;
-
-            fldDlg = new FolderBrowserDialog();
-            fldDlg.Description = "Destination Diretory for Alarms.csv and Tags.csv!";
-            if (fldDlg.ShowDialog() == DialogResult.OK)
-            {
-                System.IO.StreamWriter swr;
-
-                swr = new System.IO.StreamWriter(fldDlg.SelectedPath + "\\Alarms.csv");
-                swr.Write(errors);
-                swr.Close();
-
-                swr = new System.IO.StreamWriter(fldDlg.SelectedPath + "\\Tags.csv");
-                swr.Write(tags.Replace(";", "\t"));
-                swr.Close();
-            }
-        }
 
         private void treeStep7Project_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
         {
@@ -596,237 +516,13 @@ namespace JFK_VarTab
             if (e.Node.ImageIndex == 0) e.Node.ImageIndex = 1;
         }
 
-        private void cmdCreateWinCCErrorMessages_Click(object sender, EventArgs e)
-        {
-            HMIGENOBJECTSLib.HMIGO HMIGOObject = null;
-            try
-            {
-                HMIGOObject = new HMIGENOBJECTSLib.HMIGO();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("The WinCC Object could not be created!\n\n Error:" + ex.Message);
-            }
-
-            try
-            {
-                S7DataBlock myDB =
-                    (S7DataBlock) ((BlocksOfflineFolder) blkFld).GetBlock((S7ProjectBlockInfo) lstListBox.SelectedItem);
-
-                int cnt = 0;
-
-                if (myDB.Structure != null && myDB.Structure.Children != null)
-                    cnt =
-                        ((S7DataRow) myDB.Structure.Children[myDB.Structure.Children.Count - 1]).NextBlockAddress
-                            .ByteAddress;
-
-                string varname = "STOERUNGEN_DB" + myDB.BlockNumber;
-
-                for (int n = 0; n < cnt/2; n++)
-                {
-                    try
-                    {
-                        HMIGOObject.CreateTag(varname + "_" + (n + 1).ToString(),
-                            HMIGENOBJECTSLib.HMIGO_TAG_TYPE.TAG_UNSIGNED_16BIT_VALUE, txtConnectionName.Text,
-                            "DB" + myDB.BlockNumber + ",DD" + (n*2).ToString(), "Stoerungen");
-                    }
-                    catch (COMException ex)
-                    {
-                        if (ex.ErrorCode != -2147196408) throw ex;
-                    }
-
-                }
-
-                string errors = "";
-
-                int errNr = Convert.ToInt32(txtStartErrorNumber.Text);
-
-                foreach (S7DataRow plcDataRow in S7DataRow.GetChildrowsAsList(((S7DataRow) myDB.Structure)))
-                    // myDB.GetRowsAsList())
-                {
-                    if (plcDataRow.DataType == S7DataRowType.BOOL && !string.IsNullOrEmpty(plcDataRow.Comment))
-                    {
-                        string stoeTxt = "";
-                        stoeTxt = plcDataRow.Comment;
-
-                        if (chkCombineStructComments.Checked)
-                        {
-                            var par = plcDataRow.Parent;
-                            while (par != null)
-                            {
-                                stoeTxt = par.Comment + stoeTxt;
-                                par = par.Parent;
-                            }
-                        }
-
-
-                        char anfC = plcDataRow.Comment[0];
-                        if (anfC.ToString() == txtErrPrefix.Text || !chkUseErrPrefix.Checked)
-                        {
-                            if (anfC.ToString() == txtErrPrefix.Text) stoeTxt = stoeTxt.Substring(1);
-
-                            ByteBitAddress akAddr = plcDataRow.BlockAddress;
-                            int varnr = (akAddr.ByteAddress/2) + 1;
-
-                            int bitnr = akAddr.BitAddress;
-                            if (akAddr.ByteAddress%2 == 0) bitnr += 8;
-
-
-                            string stoeOrt = "";
-                            string stoeTxtEn = "";
-
-
-                            if (stoeTxt.Contains(";"))
-                            {
-                                stoeOrt = stoeTxt.Split(';')[0];
-                                stoeTxt = stoeTxt.Split(';')[1];
-                            }
-
-                            if (chkFixedErrorNumber.Checked)
-                                errNr = Convert.ToInt32(txtStartErrorNumber.Text) + akAddr.ByteAddress*8 +
-                                        akAddr.BitAddress;
-
-                            try
-                            {
-                                HMIGOObject.CreateSingleAlarm(errNr,
-                                    HMIGENOBJECTSLib.HMIGO_SINGLE_ALARM_CLASS_ID.SINGLE_ALARM_ERROR, 1, stoeTxt,
-                                    varname + "_" + varnr.ToString(), bitnr);
-                                //HMIGOObject.SingleAlarmInfoText = stoeOrt;//stoeTxt;
-                                HMIGOObject.SingleAlarmText2ID = stoeOrt;
-                                HMIGOObject.CommitSingleAlarm();
-                            }
-                            catch (System.Runtime.InteropServices.COMException ex)
-                            {
-                                if (ex.ErrorCode != -2147467259) throw ex;
-                            }
-
-                            //errors += "\"D\"\t\"" + errNr.ToString() + "\"\t\"Alarms\"\t\"" + varname + "\"\t\"" + bitnr.ToString() + "\"\t\t\t\t\t\t\"0\"\t\"de-DE=" + stoeTxt + "\"\t\"en-US=" + stoeTxtEn + "\"\t\"de-DE=\"" + "\r\n";
-                            if (!chkFixedErrorNumber.Checked) errNr++;
-                        }
-                    }
-                }
-            }
-            catch (System.Runtime.InteropServices.COMException ex)
-            {
-                if (ex.ErrorCode == -2147195889)
-                    MessageBox.Show("Error: The Connection Name you specified does not exist!");
-                else MessageBox.Show("Error: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
-
-        private void cmdCreateWinCCTags_Click(object sender, EventArgs e)
-        {
-            HMIGENOBJECTSLib.HMIGO HMIGOObject = null;
-            try
-            {
-                HMIGOObject = new HMIGENOBJECTSLib.HMIGO();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("The WinCC Object could not be created!\n\n Error:" + ex.Message);
-            }
-            S7DataBlock myDB =
-                (S7DataBlock) ((BlocksOfflineFolder) blkFld).GetBlock((S7ProjectBlockInfo) lstListBox.SelectedItem);
-
-            List<DataBlockRow> myLst = null;
-            if (chkExpandArrays.Checked)
-                myLst =
-                    S7DataRow.GetChildrowsAsList(
-                        ((S7DataRow) myDB.GetArrayExpandedStructure(new S7DataBlockExpandOptions())));
-                    // ) myDB.GetRowsAsArrayExpandedList(ne);
-            else myLst = S7DataRow.GetChildrowsAsList(((S7DataRow) myDB.Structure)); // myDB.GetRowsAsList();
-
-            int cnt = 0;
-
-            try
-            {
-                foreach (S7DataRow plcDataRow in myLst)
-                {
-                    string tagName = txtTagsPrefix.Text +
-                                     plcDataRow.StructuredName.Replace(".", "_")
-                                         .Replace("[", "_")
-                                         .Replace("]", "")
-                                         .Replace(" ", "")
-                                         .Replace(",", "_");
-                    try
-                    {
-                        switch (plcDataRow.DataType)
-                        {
-                            case S7DataRowType.BOOL:
-                                HMIGOObject.CreateTag(tagName, HMIGENOBJECTSLib.HMIGO_TAG_TYPE.TAG_BINARY_TAG,
-                                    txtConnectionName.Text,
-                                    "DB" + myDB.BlockNumber + ",D" + plcDataRow.BlockAddress.ToString(),
-                                    "TAGS_DB" + myDB.BlockNumber);
-                                break;
-                            case S7DataRowType.INT:
-                                HMIGOObject.CreateTag(tagName, HMIGENOBJECTSLib.HMIGO_TAG_TYPE.TAG_SIGNED_16BIT_VALUE,
-                                    txtConnectionName.Text,
-                                    "DB" + myDB.BlockNumber + ",DW" + plcDataRow.BlockAddress.ByteAddress.ToString(),
-                                    "TAGS_DB" + myDB.BlockNumber);
-                                break;
-                            case S7DataRowType.DINT:
-                                HMIGOObject.CreateTag(tagName, HMIGENOBJECTSLib.HMIGO_TAG_TYPE.TAG_SIGNED_32BIT_VALUE,
-                                    txtConnectionName.Text,
-                                    "DB" + myDB.BlockNumber + ",DD" + plcDataRow.BlockAddress.ByteAddress.ToString(),
-                                    "TAGS_DB" + myDB.BlockNumber);
-                                break;
-                            case S7DataRowType.WORD:
-                                HMIGOObject.CreateTag(tagName, HMIGENOBJECTSLib.HMIGO_TAG_TYPE.TAG_UNSIGNED_16BIT_VALUE,
-                                    txtConnectionName.Text,
-                                    "DB" + myDB.BlockNumber + ",DW" + plcDataRow.BlockAddress.ByteAddress.ToString(),
-                                    "TAGS_DB" + myDB.BlockNumber);
-                                break;
-                            case S7DataRowType.DWORD:
-                                HMIGOObject.CreateTag(tagName, HMIGENOBJECTSLib.HMIGO_TAG_TYPE.TAG_UNSIGNED_32BIT_VALUE,
-                                    txtConnectionName.Text,
-                                    "DB" + myDB.BlockNumber + ",DD" + plcDataRow.BlockAddress.ByteAddress.ToString(),
-                                    "TAGS_DB" + myDB.BlockNumber);
-                                break;
-                            case S7DataRowType.BYTE:
-                                HMIGOObject.CreateTag(tagName, HMIGENOBJECTSLib.HMIGO_TAG_TYPE.TAG_UNSIGNED_8BIT_VALUE,
-                                    txtConnectionName.Text,
-                                    "DB" + myDB.BlockNumber + ",DBB" + plcDataRow.BlockAddress.ByteAddress.ToString(),
-                                    "TAGS_DB" + myDB.BlockNumber);
-                                break;
-                            case S7DataRowType.REAL:
-                                HMIGOObject.CreateTag(tagName,
-                                    HMIGENOBJECTSLib.HMIGO_TAG_TYPE.TAG_FLOATINGPOINT_NUMBER_32BIT_IEEE_754,
-                                    txtConnectionName.Text,
-                                    "DB" + myDB.BlockNumber + ",DD" + plcDataRow.BlockAddress.ByteAddress.ToString(),
-                                    "TAGS_DB" + myDB.BlockNumber);
-                                break;
-                        }
-                    }
-                    catch (System.Runtime.InteropServices.COMException ex)
-                    {
-                        if (ex.ErrorCode != -2147196408) throw ex;
-                        //Tag existiert schoin                            
-                    }
-                }
-            }
-            catch (System.Runtime.InteropServices.COMException ex)
-            {
-                if (ex.ErrorCode == -2147195889)
-                    MessageBox.Show("Error: The Connection Name you specified does not exist!");
-                else MessageBox.Show("Error: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-
-        }
-
         private void elementHost1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
         {
 
         }
 
         private PLCConnection myConn;
+        
 
 
         private List<PLCTag> valueList = null;
@@ -850,19 +546,19 @@ namespace JFK_VarTab
                     if (myScrollViewer == null)
                     {
                         DependencyObject tst = VisualTreeHelper.GetChild(dataBlockViewControl.MyTree, 0);
-                        while (tst != null && tst.GetType() != typeof (ScrollViewer))
+                        while (tst != null && tst.GetType() != typeof(ScrollViewer))
                         {
                             tst = VisualTreeHelper.GetChild(tst, 0);
                         }
                         if (tst != null)
                         {
-                            myScrollViewer = (ScrollViewer) tst;
+                            myScrollViewer = (ScrollViewer)tst;
 
                         }
                     }
 
                     //nur die angezeigten Values von der SPS lesen...
-                    int start = (int) myScrollViewer.VerticalOffset/20;
+                    int start = (int)myScrollViewer.VerticalOffset / 20;
                     if (valueList == null || start != oldPos)
                     {
                         List<S7DataRow> tmpLst = S7DataRow.GetChildrowsAsList(expRow).Cast<S7DataRow>().ToList();
@@ -906,10 +602,10 @@ namespace JFK_VarTab
         {
             if (treeStep7Project.SelectedNode != null)
             {
-                myTreeNode nd = (myTreeNode) treeStep7Project.SelectedNode;
+                myTreeNode nd = (myTreeNode)treeStep7Project.SelectedNode;
                 while (nd.Parent != null)
                 {
-                    nd = (myTreeNode) nd.Parent;
+                    nd = (myTreeNode)nd.Parent;
                 }
                 treeStep7Project.Nodes.Remove(nd);
 
@@ -927,7 +623,7 @@ namespace JFK_VarTab
             List<string> projects = new List<string>();
             foreach (myTreeNode myTreeNode in treeStep7Project.Nodes)
             {
-                projects.Add(((ProjectFolder) myTreeNode.myObject).Project.ProjectFile);
+                projects.Add(((ProjectFolder)myTreeNode.myObject).Project.ProjectFile);
             }
 
             var col = new StringCollection();
@@ -975,14 +671,14 @@ namespace JFK_VarTab
         {
             if (lstProjects.SelectedItem != null)
             {
-                Project tmp = (Project) lstProjects.SelectedItem;
+                Project tmp = (Project)lstProjects.SelectedItem;
                 loadPrj(tmp.ProjectFile);
             }
 
             List<string> projects = new List<string>();
             foreach (myTreeNode myTreeNode in treeStep7Project.Nodes)
             {
-                projects.Add(((ProjectFolder) myTreeNode.myObject).Project.ProjectFile);
+                projects.Add(((ProjectFolder)myTreeNode.myObject).Project.ProjectFile);
             }
 
             var col = new StringCollection();
@@ -1001,24 +697,6 @@ namespace JFK_VarTab
             (new Features()).ShowDialog();
         }
 
-        private void openUsernameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string username = "";
-            string password = "";
-            if (InputBox.Show("Username", "Username", ref username) == DialogResult.OK)
-            {
-                if (InputBox.Show("Passwort", "Passwort", ref password) == DialogResult.OK)
-                {
-                    this.credentials = new Credentials() { Username = username, Password = new System.Security.SecureString() };
-                    foreach (char c in password)
-                    {
-                        credentials.Password.AppendChar(c);
-                    }
-                    openToolStripMenuItem_Click(sender, e);
-                }
-            }       
-        }
-
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -1034,51 +712,13 @@ namespace JFK_VarTab
             List<string> projects = new List<string>();
             foreach (myTreeNode myTreeNode in treeStep7Project.Nodes)
             {
-                projects.Add(((ProjectFolder) myTreeNode.myObject).Project.ProjectFile);
+                projects.Add(((ProjectFolder)myTreeNode.myObject).Project.ProjectFile);
             }
 
             var col = new StringCollection();
             col.AddRange(projects.ToArray());
             Settings.Default.OpenedProjects = col;
             Settings.Default.Save();
-        }
-
-        private void configConnectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            myConn = null;
-            var tmp = lstConnections.SelectedItem;
-
-            Configuration.ShowConfiguration("Verbindung_1", false);
-
-            lstConnections.Items.Clear();
-            var lstConn = PLCConnectionConfiguration.GetConfigurationNames();
-            if (lstConn != null) lstConnections.Items.AddRange(lstConn);
-
-            if (tmp != null && lstConnections.Items.Contains(tmp)) lstConnections.SelectedItem = tmp;
-        }
-
-        private void lstConnections_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            myConn = new PLCConnection((string) lstConnections.SelectedItem);
-            if (lstConnections.SelectedItem != null)
-                lblConnInfo.Text = new PLCConnectionConfiguration((string) lstConnections.SelectedItem).ToString();
-        }
-
-        private void watchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            lblStatus.Text = "";
-            try
-            {
-                if (myConn != null) myConn.Dispose();
-                myConn = new PLCConnection((string) lstConnections.SelectedItem);
-                myConn.Connect();
-                fetchPLCData.Enabled = true;
-            }
-            catch (Exception ex)
-            {
-                lblStatus.Text = ex.Message;
-            }
-            //myConn.Disconnect();
         }
 
         private void unwatchToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1110,13 +750,6 @@ namespace JFK_VarTab
             }
         }
 
-        private void downloadOnlineBlockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DownloadBlock myDown = new DownloadBlock((string) lstConnections.SelectedItem);
-            myDown.ShowDialog();
-
-        }
-
         private void convertCallsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             convertCallsToolStripMenuItem.Checked = !convertCallsToolStripMenuItem.Checked;
@@ -1128,73 +761,23 @@ namespace JFK_VarTab
             stRz.ShowDialog();
         }
 
-        private void searchPasswordToolStripMenuItem_Click(object sender, EventArgs e)
+       
+
+
+        private void buttonCreateLogFile_Click(object sender, EventArgs e) //Kenneth
+    
         {
-            char[] zeichen =
-            {
-                ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
-                'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
-                'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6',
-                '7', '8', '9'
-            };
 
-
-            myConn = new PLCConnection((string) lstConnections.SelectedItem);
-            myConn.Connect();
-
-            Int64 anz = 0;
-
-            bool pwdCorr = false;
-            string pwd = "12345678";
-            int[] cnt = new int[8];
-            while (!pwdCorr)
-            {
-                cnt[0]++;
-                for (int n = 0; n < 7; n++)
-                {
-                    if (cnt[n] >= zeichen.Length)
-                    {
-                        cnt[n + 1]++;
-                        cnt[n] = 0;
-                    }
-                }
-
-                if (cnt[7] >= zeichen.Length)
-                {
-                    MessageBox.Show("Password not found!");
-                    return;
-                }
-
-
-                pwd = "";
-                for (int n = 0; n < 8; n++)
-                {
-                    pwd += zeichen[cnt[n]];
-                }
-
-                anz++;
-                pwdCorr = myConn.PLCSendPassword(pwd.Trim());
-            }
-
-            MessageBox.Show("Passwort:" + pwd + "\n" + "Anzahl geprüfter Kennwörter:" + anz.ToString());
-
-        }
-
-        private void cmdCreateWinCCFlexibleTags_Click(object sender, EventArgs e)
-        {
             S7DataBlock myDB =
                 (S7DataBlock) ((BlocksOfflineFolder) blkFld).GetBlock((S7ProjectBlockInfo) lstListBox.SelectedItem);
 
             List<DataBlockRow> myLst = null;
-            if (chkExpandArrays.Checked)
-                myLst =
-                    S7DataRow.GetChildrowsAsList(
-                        ((S7DataRow) myDB.GetArrayExpandedStructure(new S7DataBlockExpandOptions())));
-                    // ) myDB.GetRowsAsArrayExpandedList(ne);
-            else myLst = S7DataRow.GetChildrowsAsList(((S7DataRow) myDB.Structure)); // myDB.GetRowsAsList();
+            myLst = S7DataRow.GetChildrowsAsList(((S7DataRow) myDB.Structure)); // myDB.GetRowsAsList();
 
+            
+            string Slot = CP_Slot.ToString();
+            richTextBox1.Text = Slot;
             string tags = "";
-
 
             foreach (S7DataRow plcDataRow in myLst) // myDB.GetRowsAsList())
             {
@@ -1208,94 +791,68 @@ namespace JFK_VarTab
                 switch (plcDataRow.DataType)
                 {
                     case S7DataRowType.BOOL:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBX " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + "." +
-                                plcDataRow.BlockAddress.BitAddress.ToString() + ";Bool;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                        tags += myDB.SymbolOrName + "." + plcDataRow.Name + ";" + myDB.BlockNumber + ";" +
+                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";" + "1" + ";" +
+                                plcDataRow.BlockAddress.BitAddress.ToString() + "\r\n";
                         break;
                     case S7DataRowType.INT:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBW " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";Int;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                    
                         break;
                     case S7DataRowType.DINT:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBD " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";DInt;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
                         break;
+                                                
                     case S7DataRowType.WORD:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBW " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";Word;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                       
                         break;
                     case S7DataRowType.DWORD:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBD " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";DWord;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                        
                         break;
                     case S7DataRowType.BYTE:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBB " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";Byte;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                     
                         break;
                     case S7DataRowType.REAL:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBD " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";Real;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                        tags += myDB.SymbolOrName + "." + plcDataRow.Name + ";" + myDB.BlockNumber + ";" +
+                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";" + "2" + ";" +
+                                "2" + "\r\n";
                         break;
                     case S7DataRowType.CHAR:
-                        if (plcDataRow.IsArray)
-                            tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBB " +
-                                    plcDataRow.BlockAddress.ByteAddress.ToString() + ";StringChar;" +
-                                    plcDataRow.GetArrayLines().ToString() + ";" + "1" +
-                                    ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
-                        else
-                            tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBB " +
-                                    plcDataRow.BlockAddress.ByteAddress.ToString() + ";Char;;" + "1" +
-                                    ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                        
                         break;
                     case S7DataRowType.COUNTER:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBW " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";Counter;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                   
                         break;
                     case S7DataRowType.DATE:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBD " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";Date;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                        
                         break;
                     case S7DataRowType.DATE_AND_TIME:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBB " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";Date and Time;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                        
                         break;
                     case S7DataRowType.S5TIME:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBW " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";Timer;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                     
                         break;
                     case S7DataRowType.STRING:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBB " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";String;" +
-                                plcDataRow.StringSize.ToString() + ";" + "1" + ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                       
                         break;
                     case S7DataRowType.TIME:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBD " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";Time;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                        
                         break;
                     case S7DataRowType.TIME_OF_DAY:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBD " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";Time of Day;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                       
                         break;
                     case S7DataRowType.TIMER:
-                        tags += tagName + ";" + txtConnectionName.Text + ";DB " + myDB.BlockNumber + " DBW " +
-                                plcDataRow.BlockAddress.ByteAddress.ToString() + ";Timer;;" + "1" +
-                                ";2;1 s;;;;;0;10;0;100;0;;0;\r\n";
+                        
                         break;
                 }
             }
+            string filename = "";
+            if (checkBoxUseDB_Name.Checked)
+                {
+                filename = txtLogfileName.Text;
+                }
+                else
+                {
+                filename = myDB.SymbolOrName + "_LogFile";
+                }
 
             FolderBrowserDialog fldDlg = null;
 
@@ -1303,76 +860,17 @@ namespace JFK_VarTab
             fldDlg.Description = "Destination Directory for Tags.csv!";
             if (fldDlg.ShowDialog() == DialogResult.OK)
             {
+                                            
                 System.IO.StreamWriter swr;
 
-                swr = new System.IO.StreamWriter(fldDlg.SelectedPath + "\\Tags.csv");
-                swr.Write(tags.Replace(";", "\t"));
+                swr = new System.IO.StreamWriter(fldDlg.SelectedPath + "\\" + filename + ".txt");
+                swr.WriteLine("#" + "MPI" + ";" + "Slot"); //Write the first two lines
+                swr.WriteLine("@" + "Rack" + ";" + "IP");
+                swr.Write(tags.Replace("\t", ";"));
                 swr.Close();
             }
         }
-
-        private void createDokumentationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var myFB =
-                (S7FunctionBlock) ((BlocksOfflineFolder) blkFld).GetBlock((S7ProjectBlockInfo) lstListBox.SelectedItem);
-
-            var html = "";
-            html += "<html>";
-            html += "<body style=\"font-family: Courier New;\">";
-            if (myFB.SymbolTableEntry != null)
-            {
-                html += "<h3>" + myFB.SymbolTableEntry.Symbol + " (" + myFB.BlockName + ")" + "</h3>";
-            }
-            else
-            {
-                html += "<h3>" + myFB.BlockName + "</h3>";
-            }
-
-            html += "<b>Beschreibung</b>";
-            html += "<ul>";
-            html += "<pre>" + myFB.Description + "</pre>";
-            html += "</ul>";
-            html += "<br>";
-            html += "<b>Parameter</b>";
-            html += "<ul>";
-            foreach (var par in myFB.Parameter.Children)
-            {
-                if (par.Name == "IN" || par.Name == "OUT" || par.Name == "IN_OUT")
-                    foreach (var par2 in par.Children)
-                    {
-                        html += "<b>" + par.Name.PadRight(6, ' ').Replace(" ", "&nbsp;") + ": <i>" + par2.Name +
-                                "</i></b>";
-                        html += "<ul>";
-                        html += "&nbsp;&nbsp;&nbsp;&nbsp;" + par2.Comment;
-                        html += "</ul>";
-                    }
-            }
-            html += "</ul>";
-            html += "</body>";
-            html += "</html>";
-
-            html = html.Replace("ü", "&uuml;");
-            html = html.Replace("ö", "&ouml;");
-            html = html.Replace("ä", "&auml;");
-            html = html.Replace("Ü", "&Uuml;");
-            html = html.Replace("Ö", "&Ouml;");
-            html = html.Replace("Ä", "&Auml;");
-            html = html.Replace("ß", "&szlig;");
-
-            FolderBrowserDialog fldDlg = null;
-            fldDlg = new FolderBrowserDialog();
-            fldDlg.Description = "Destination Directory for html";
-            if (fldDlg.ShowDialog() == DialogResult.OK)
-            {
-                System.IO.StreamWriter swr;
-
-                swr =
-                    new System.IO.StreamWriter(fldDlg.SelectedPath + "\\" + myFB.BlockType + myFB.BlockNumber + ".html");
-                swr.Write(html);
-                swr.Close();
-            }
-        }
-
+  
         private void parseAllBlocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Try to parse all Blocks");
@@ -1422,20 +920,7 @@ namespace JFK_VarTab
                     }
                 }
             }
-        }
-
-        private void dependenciesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var info = lstListBox.SelectedItem as S7ProjectBlockInfo;
-            if (info != null)
-            {
-                var dep = info.GetBlock().Dependencies;
-                foreach (var block in dep)
-                {
-                    MessageBox.Show(block);
-                }
-            }
-        }
+        }   
 
         private string CreateHirachy(string prefix, S7FunctionBlock block, Stack<string> parentBlocks)
         {
@@ -1503,136 +988,8 @@ namespace JFK_VarTab
             parentBlocks.Pop();
 
             return retVal;
-        }
-
-        private void callHirachyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var info = lstListBox.SelectedItem as S7ProjectBlockInfo;
-            if (info != null)
-            {
-                var txt = CreateHirachy("", (S7FunctionBlock) info.GetBlock(), new Stack<string>());
-
-                viewBlockList.Visible = false;
-                txtTextBox.Text = txt;
-                txtTextBox.Visible = true;
-
-            }
-
-            var s5info = lstListBox.SelectedItem as S5ProjectBlockInfo;
-            if (s5info != null)
-            {
-                var txt = CreateHirachy("", (S5FunctionBlock)s5info.GetBlock(), new Stack<string>());
-
-                viewBlockList.Visible = false;
-                txtTextBox.Text = txt;
-                txtTextBox.Visible = true;
-
-            }
-        }
-
-        private void cmdCreateWEBfactoryTags_Click(object sender, EventArgs e)
-        {
-            S7DataBlock myDB =
-                (S7DataBlock) ((BlocksOfflineFolder) blkFld).GetBlock((S7ProjectBlockInfo) lstListBox.SelectedItem);
-
-            List<DataBlockRow> myLst = null;
-            if (chkExpandArrays.Checked)
-                myLst =
-                    S7DataRow.GetChildrowsAsList(
-                        ((S7DataRow) myDB.GetArrayExpandedStructure(new S7DataBlockExpandOptions())));
-                    // ) myDB.GetRowsAsArrayExpandedList(ne);
-            else myLst = S7DataRow.GetChildrowsAsList(((S7DataRow) myDB.Structure)); // myDB.GetRowsAsList();
-
-            string tags = WEBfactoryTag.GetHeader();
-
-            foreach (S7DataRow plcDataRow in myLst) // myDB.GetRowsAsList())
-            {
-                WEBfactoryTag tag = new WEBfactoryTag();
-
-                tag.SignalName = txtTagsPrefix.Text + "_" +
-                                 plcDataRow.StructuredName.Replace(".", "_")
-                                     .Replace("[", "_")
-                                     .Replace("]", "")
-                                     .Replace(" ", "")
-                                     .Replace(",", "_");
-
-                #region Calcute OPC Item Name
-
-                switch (plcDataRow.DataType)
-                {
-                    case S7DataRowType.BOOL:
-                        tag.OPCItemName = txtTagsPrefix.Text + "." + "DB" + myDB.BlockNumber + "." + "X" +
-                                          plcDataRow.BlockAddress.ByteAddress.ToString() + "." +
-                                          plcDataRow.BlockAddress.BitAddress.ToString();
-                        break;
-                    case S7DataRowType.BYTE:
-                        tag.OPCItemName = txtTagsPrefix.Text + "." + "DB" + myDB.BlockNumber + "." + "B" +
-                                          plcDataRow.BlockAddress.ByteAddress.ToString();
-                        break;
-                    case S7DataRowType.WORD:
-                        tag.OPCItemName = txtTagsPrefix.Text + "." + "DB" + myDB.BlockNumber + "." + "W" +
-                                          plcDataRow.BlockAddress.ByteAddress.ToString();
-                        break;
-                    case S7DataRowType.INT:
-                        tag.OPCItemName = txtTagsPrefix.Text + "." + "DB" + myDB.BlockNumber + "." + "I" +
-                                          plcDataRow.BlockAddress.ByteAddress.ToString();
-                        break;
-                    case S7DataRowType.REAL:
-                        tag.OPCItemName = txtTagsPrefix.Text + "." + "DB" + myDB.BlockNumber + "." + "R" +
-                                          plcDataRow.BlockAddress.ByteAddress.ToString();
-                        break;
-                    case S7DataRowType.STRING:
-                        tag.OPCItemName = txtTagsPrefix.Text + "." + "DB" + myDB.BlockNumber + "." + "S" +
-                                          plcDataRow.BlockAddress.ByteAddress.ToString() + "." +
-                                          plcDataRow.StringSize.ToString();
-                        break;
-                    case S7DataRowType.STRUCT:
-                    {
-                        if (!plcDataRow.Children.Any(itm => itm.DataType != S7DataRowType.CHAR))
-                        {
-                            tag.OPCItemName = txtTagsPrefix.Text + "." + "DB" + myDB.BlockNumber + "." + "S" +
-                                              plcDataRow.BlockAddress.ByteAddress.ToString() + "." +
-                                              plcDataRow.ByteLength.ToString();
-                        }
-                    }
-                        break;
-                    case S7DataRowType.DWORD:
-                        tag.OPCItemName = txtTagsPrefix.Text + "." + "DB" + myDB.BlockNumber + "." + "DW" +
-                                          plcDataRow.BlockAddress.ByteAddress.ToString();
-                        break;
-                    case S7DataRowType.DINT:
-                        tag.OPCItemName = txtTagsPrefix.Text + "." + "DB" + myDB.BlockNumber + "." + "DI" +
-                                          plcDataRow.BlockAddress.ByteAddress.ToString();
-                        break;
-                }
-
-                #endregion
-
-                tag.Description = plcDataRow.Comment;
-
-                if (tag.OPCItemName != null) tags += tag.ToString();
-            }
-
-            FolderBrowserDialog fldDlg = null;
-
-            fldDlg = new FolderBrowserDialog();
-            fldDlg.Description = "Destination Diretory for Tags.csv!";
-            if (fldDlg.ShowDialog() == DialogResult.OK)
-            {
-                System.IO.StreamWriter swr;
-
-                swr = new System.IO.StreamWriter(fldDlg.SelectedPath + "\\Tags.csv", false, Encoding.Unicode);
-                swr.Write(tags);
-                swr.Close();
-            }
-        }
-
-        private void dataBlockValueSaveRestoreToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var saver = new DataBlockValueSaver((string) lstConnections.SelectedItem);
-            saver.ShowDialog();
-        }
-
+        }     
+        
         private void export_Click(object sender, EventArgs e)
         {
             var dlg = new SaveFileDialog();
@@ -1651,16 +1008,12 @@ namespace JFK_VarTab
             }
         }
 
-        private void reachablePLCsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void label9_Click(object sender, EventArgs e)
         {
-            DotNetSiemensPLCToolBoxLibrary.Communication.Discovery.S7ReachablePLCDialog Form = new DotNetSiemensPLCToolBoxLibrary.Communication.Discovery.S7ReachablePLCDialog();
-            if (Form.ShowDialog() == DialogResult.OK)
-            {
-                var Conf = Form.SelectedPlc.S7ConnectionSettings;
-                if (Conf == null) return;
-                myConn = new PLCConnection(Conf);
-             }
+
         }
+
+ 
     }
 
     public class WEBfactoryTag

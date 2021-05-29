@@ -117,13 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label7.Text" xml:space="preserve">
-    <value>With this S7 Project Tool you can:
- - View Deleted Blocks and Folders (only if the data is still in the project)
- - Set/Remove KnowHowProtection
- - Convert a DataBlock and Comments to WinCC / WinCCFlexible Error Messages
- - Convert a DataBlock to WinCC Tags
- - View DataBlocks online (with Char-Arrays displayed as String)
- - View the old Interface of a Datablock when it's ovwritten by a online Block</value>
-  </data>
 </root>

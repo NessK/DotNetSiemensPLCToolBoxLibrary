@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Features));
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -43,9 +42,10 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(12, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(391, 91);
+            this.label7.Size = new System.Drawing.Size(408, 39);
             this.label7.TabIndex = 16;
-            this.label7.Text = resources.GetString("label7.Text");
+            this.label7.Text = "With this S7 Project Tool you can:\r\n - Set/Remove KnowHowProtection\r\n - Create Lo" +
+    "gfile from an entire datablock, only REAL and BOOL are output to LogFIle";
             // 
             // label1
             // 
@@ -55,7 +55,7 @@
             this.label1.Size = new System.Drawing.Size(235, 52);
             this.label1.TabIndex = 16;
             this.label1.Text = "Thanks goto:\r\n - Zottel, for his great Librrary libnodave\r\n - Human, for his work" +
-                " on the MC7 to AWL Code\r\n - Thomas_v2.1 for his hints about the linkhrs.lnk";
+    " on the MC7 to AWL Code\r\n - Thomas_v2.1 for his hints about the linkhrs.lnk";
             // 
             // linkLabel1
             // 

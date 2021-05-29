@@ -51,23 +51,13 @@
             this.cmdUndeleteBlock = new System.Windows.Forms.Button();
             this.txtUndeleteName = new System.Windows.Forms.TextBox();
             this.grpVisu = new System.Windows.Forms.GroupBox();
-            this.cmdWebfactoryTags = new System.Windows.Forms.Button();
-            this.chkCombineStructComments = new System.Windows.Forms.CheckBox();
-            this.cmdCreateWinCCFlexibleTags = new System.Windows.Forms.Button();
-            this.chkExpandArrays = new System.Windows.Forms.CheckBox();
-            this.chkUseErrPrefix = new System.Windows.Forms.CheckBox();
-            this.chkFixedErrorNumber = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtTagsPrefix = new System.Windows.Forms.TextBox();
-            this.txtErrPrefix = new System.Windows.Forms.TextBox();
-            this.txtStartErrorNumber = new System.Windows.Forms.TextBox();
+            this.buttonCreateLogFile = new System.Windows.Forms.Button();
+            this.buttonFastLogAWL = new System.Windows.Forms.Button();
+            this.testlistbox = new System.Windows.Forms.ListBox();
+            this.checkBoxUseDB_Name = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtConnectionName = new System.Windows.Forms.TextBox();
-            this.cmdCreateWinCCTags = new System.Windows.Forms.Button();
-            this.cmdCreateWinCCErrorMessages = new System.Windows.Forms.Button();
-            this.cmdCreateFlexibleErrorMessages = new System.Windows.Forms.Button();
+            this.txtLogfileName = new System.Windows.Forms.TextBox();
+            this.txtTagsPrefix = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.fetchPLCData = new System.Windows.Forms.Timer(this.components);
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -81,33 +71,15 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openWithUsernameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.attach14ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.attach15_1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reachablePLCsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lstConnections = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.watchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unwatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.downloadOnlineBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.dBStructResizerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataBlockValueSaveRestoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.searchPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convertCallsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExpandDatablockArrays = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.createDokumentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parseAllBlocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createAWLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dependenciesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.callHirachyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.featuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
@@ -126,6 +98,7 @@
             this.export = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtaSymbolTable)).BeginInit();
             this.grpVisu.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -148,7 +121,7 @@
             // 
             // lblProjectInfo
             // 
-            this.lblProjectInfo.Location = new System.Drawing.Point(100, 41);
+            this.lblProjectInfo.Location = new System.Drawing.Point(109, 41);
             this.lblProjectInfo.Name = "lblProjectInfo";
             this.lblProjectInfo.Size = new System.Drawing.Size(690, 13);
             this.lblProjectInfo.TabIndex = 3;
@@ -156,7 +129,7 @@
             // 
             // lblProjectName
             // 
-            this.lblProjectName.Location = new System.Drawing.Point(100, 28);
+            this.lblProjectName.Location = new System.Drawing.Point(109, 28);
             this.lblProjectName.Name = "lblProjectName";
             this.lblProjectName.Size = new System.Drawing.Size(643, 13);
             this.lblProjectName.TabIndex = 3;
@@ -169,7 +142,7 @@
             this.treeStep7Project.Location = new System.Drawing.Point(3, 3);
             this.treeStep7Project.Name = "treeStep7Project";
             this.treeStep7Project.SelectedImageIndex = 0;
-            this.treeStep7Project.Size = new System.Drawing.Size(307, 190);
+            this.treeStep7Project.Size = new System.Drawing.Size(367, 406);
             this.treeStep7Project.TabIndex = 4;
             this.treeStep7Project.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeStep7Project_BeforeCollapse);
             this.treeStep7Project.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeStep7Project_BeforeExpand);
@@ -211,7 +184,7 @@
             this.dtaSymbolTable.Location = new System.Drawing.Point(0, 0);
             this.dtaSymbolTable.Name = "dtaSymbolTable";
             this.dtaSymbolTable.RowHeadersWidth = 82;
-            this.dtaSymbolTable.Size = new System.Drawing.Size(610, 327);
+            this.dtaSymbolTable.Size = new System.Drawing.Size(730, 543);
             this.dtaSymbolTable.TabIndex = 5;
             this.dtaSymbolTable.Visible = false;
             // 
@@ -264,7 +237,7 @@
             this.lstListBox.ItemHeight = 16;
             this.lstListBox.Location = new System.Drawing.Point(3, 3);
             this.lstListBox.Name = "lstListBox";
-            this.lstListBox.Size = new System.Drawing.Size(354, 260);
+            this.lstListBox.Size = new System.Drawing.Size(474, 476);
             this.lstListBox.TabIndex = 6;
             this.lstListBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.lstListBox.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
@@ -277,7 +250,7 @@
             this.txtTextBox.Multiline = true;
             this.txtTextBox.Name = "txtTextBox";
             this.txtTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtTextBox.Size = new System.Drawing.Size(610, 327);
+            this.txtTextBox.Size = new System.Drawing.Size(730, 543);
             this.txtTextBox.TabIndex = 7;
             this.txtTextBox.Visible = false;
             this.txtTextBox.WordWrap = false;
@@ -285,9 +258,9 @@
             // chkShowDeleted
             // 
             this.chkShowDeleted.AutoSize = true;
-            this.chkShowDeleted.Location = new System.Drawing.Point(3, 306);
+            this.chkShowDeleted.Location = new System.Drawing.Point(3, 522);
             this.chkShowDeleted.Name = "chkShowDeleted";
-            this.chkShowDeleted.Size = new System.Drawing.Size(123, 18);
+            this.chkShowDeleted.Size = new System.Drawing.Size(105, 18);
             this.chkShowDeleted.TabIndex = 8;
             this.chkShowDeleted.Text = "Show deleted";
             this.chkShowDeleted.UseVisualStyleBackColor = true;
@@ -296,18 +269,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 28);
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.label3.Location = new System.Drawing.Point(3, 26);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 17);
+            this.label3.Size = new System.Drawing.Size(100, 15);
             this.label3.TabIndex = 3;
             this.label3.Text = "Project Name:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
             this.label4.Location = new System.Drawing.Point(3, 41);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 17);
+            this.label4.Size = new System.Drawing.Size(86, 15);
             this.label4.TabIndex = 3;
             this.label4.Text = "Project Info:";
             // 
@@ -344,7 +319,7 @@
             // 
             // txtUndeleteName
             // 
-            this.txtUndeleteName.Location = new System.Drawing.Point(3, 33);
+            this.txtUndeleteName.Location = new System.Drawing.Point(535, 3);
             this.txtUndeleteName.Name = "txtUndeleteName";
             this.txtUndeleteName.Size = new System.Drawing.Size(68, 22);
             this.txtUndeleteName.TabIndex = 13;
@@ -353,194 +328,93 @@
             // 
             // grpVisu
             // 
-            this.grpVisu.Controls.Add(this.cmdWebfactoryTags);
-            this.grpVisu.Controls.Add(this.chkCombineStructComments);
-            this.grpVisu.Controls.Add(this.cmdCreateWinCCFlexibleTags);
-            this.grpVisu.Controls.Add(this.chkExpandArrays);
-            this.grpVisu.Controls.Add(this.chkUseErrPrefix);
-            this.grpVisu.Controls.Add(this.chkFixedErrorNumber);
-            this.grpVisu.Controls.Add(this.label10);
-            this.grpVisu.Controls.Add(this.label2);
-            this.grpVisu.Controls.Add(this.label1);
-            this.grpVisu.Controls.Add(this.txtTagsPrefix);
-            this.grpVisu.Controls.Add(this.txtErrPrefix);
-            this.grpVisu.Controls.Add(this.txtStartErrorNumber);
+            this.grpVisu.Controls.Add(this.buttonCreateLogFile);
+            this.grpVisu.Controls.Add(this.buttonFastLogAWL);
+            this.grpVisu.Controls.Add(this.testlistbox);
+            this.grpVisu.Controls.Add(this.checkBoxUseDB_Name);
             this.grpVisu.Controls.Add(this.label9);
-            this.grpVisu.Controls.Add(this.txtConnectionName);
-            this.grpVisu.Controls.Add(this.cmdCreateWinCCTags);
-            this.grpVisu.Controls.Add(this.cmdCreateWinCCErrorMessages);
-            this.grpVisu.Controls.Add(this.cmdCreateFlexibleErrorMessages);
+            this.grpVisu.Controls.Add(this.txtLogfileName);
+            this.grpVisu.Controls.Add(this.txtTagsPrefix);
             this.grpVisu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpVisu.Location = new System.Drawing.Point(363, 3);
+            this.grpVisu.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.grpVisu.Location = new System.Drawing.Point(483, 3);
             this.grpVisu.Name = "grpVisu";
-            this.grpVisu.Size = new System.Drawing.Size(232, 260);
+            this.grpVisu.Size = new System.Drawing.Size(232, 476);
             this.grpVisu.TabIndex = 16;
             this.grpVisu.TabStop = false;
-            this.grpVisu.Text = "Visualization Toolbox";
+            this.grpVisu.Text = "Toolbox";
             // 
-            // cmdWebfactoryTags
+            // buttonCreateLogFile
             // 
-            this.cmdWebfactoryTags.Location = new System.Drawing.Point(19, 365);
-            this.cmdWebfactoryTags.Name = "cmdWebfactoryTags";
-            this.cmdWebfactoryTags.Size = new System.Drawing.Size(198, 23);
-            this.cmdWebfactoryTags.TabIndex = 7;
-            this.cmdWebfactoryTags.Text = "Create Webfactory Tags";
-            this.cmdWebfactoryTags.UseVisualStyleBackColor = true;
-            this.cmdWebfactoryTags.Click += new System.EventHandler(this.cmdCreateWEBfactoryTags_Click);
+            this.buttonCreateLogFile.Location = new System.Drawing.Point(9, 265);
+            this.buttonCreateLogFile.Name = "buttonCreateLogFile";
+            this.buttonCreateLogFile.Size = new System.Drawing.Size(207, 71);
+            this.buttonCreateLogFile.TabIndex = 10;
+            this.buttonCreateLogFile.Text = "Create PLC Log Setup File";
+            this.buttonCreateLogFile.UseVisualStyleBackColor = true;
+            this.buttonCreateLogFile.Click += new System.EventHandler(this.buttonCreateLogFile_Click);
             // 
-            // chkCombineStructComments
+            // buttonFastLogAWL
             // 
-            this.chkCombineStructComments.Checked = true;
-            this.chkCombineStructComments.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkCombineStructComments.Location = new System.Drawing.Point(19, 91);
-            this.chkCombineStructComments.Name = "chkCombineStructComments";
-            this.chkCombineStructComments.Size = new System.Drawing.Size(208, 16);
-            this.chkCombineStructComments.TabIndex = 6;
-            this.chkCombineStructComments.Text = "Combine Struct/UDT Comments";
-            this.chkCombineStructComments.UseVisualStyleBackColor = true;
+            this.buttonFastLogAWL.Enabled = false;
+            this.buttonFastLogAWL.Location = new System.Drawing.Point(9, 342);
+            this.buttonFastLogAWL.Name = "buttonFastLogAWL";
+            this.buttonFastLogAWL.Size = new System.Drawing.Size(207, 71);
+            this.buttonFastLogAWL.TabIndex = 9;
+            this.buttonFastLogAWL.Text = "Create FastLog FB Incl INT";
+            this.buttonFastLogAWL.UseVisualStyleBackColor = true;
             // 
-            // cmdCreateWinCCFlexibleTags
+            // testlistbox
             // 
-            this.cmdCreateWinCCFlexibleTags.Location = new System.Drawing.Point(19, 345);
-            this.cmdCreateWinCCFlexibleTags.Name = "cmdCreateWinCCFlexibleTags";
-            this.cmdCreateWinCCFlexibleTags.Size = new System.Drawing.Size(198, 23);
-            this.cmdCreateWinCCFlexibleTags.TabIndex = 5;
-            this.cmdCreateWinCCFlexibleTags.Text = "Create WinCC-Flexible Tags";
-            this.cmdCreateWinCCFlexibleTags.UseVisualStyleBackColor = true;
-            this.cmdCreateWinCCFlexibleTags.Click += new System.EventHandler(this.cmdCreateWinCCFlexibleTags_Click);
+            this.testlistbox.FormattingEnabled = true;
+            this.testlistbox.ItemHeight = 15;
+            this.testlistbox.Location = new System.Drawing.Point(9, 126);
+            this.testlistbox.Name = "testlistbox";
+            this.testlistbox.Size = new System.Drawing.Size(120, 79);
+            this.testlistbox.TabIndex = 8;
             // 
-            // chkExpandArrays
+            // checkBoxUseDB_Name
             // 
-            this.chkExpandArrays.AutoSize = true;
-            this.chkExpandArrays.Location = new System.Drawing.Point(23, 280);
-            this.chkExpandArrays.Name = "chkExpandArrays";
-            this.chkExpandArrays.Size = new System.Drawing.Size(131, 21);
-            this.chkExpandArrays.TabIndex = 4;
-            this.chkExpandArrays.Text = "Expand Arrays";
-            this.chkExpandArrays.UseVisualStyleBackColor = true;
-            // 
-            // chkUseErrPrefix
-            // 
-            this.chkUseErrPrefix.Location = new System.Drawing.Point(19, 107);
-            this.chkUseErrPrefix.Name = "chkUseErrPrefix";
-            this.chkUseErrPrefix.Size = new System.Drawing.Size(154, 16);
-            this.chkUseErrPrefix.TabIndex = 4;
-            this.chkUseErrPrefix.Text = "Errors Start with: ";
-            this.chkUseErrPrefix.UseVisualStyleBackColor = true;
-            // 
-            // chkFixedErrorNumber
-            // 
-            this.chkFixedErrorNumber.AutoSize = true;
-            this.chkFixedErrorNumber.Location = new System.Drawing.Point(19, 75);
-            this.chkFixedErrorNumber.Name = "chkFixedErrorNumber";
-            this.chkFixedErrorNumber.Size = new System.Drawing.Size(171, 21);
-            this.chkFixedErrorNumber.TabIndex = 4;
-            this.chkFixedErrorNumber.Text = "Fixed Error Number";
-            this.chkFixedErrorNumber.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 223);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(240, 68);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Style of comments\r\nin error message DB:\r\n\r\n[Error Place];[Error Message]";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 301);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Tags Prefix";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 59);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Start Error Number";
-            // 
-            // txtTagsPrefix
-            // 
-            this.txtTagsPrefix.Location = new System.Drawing.Point(100, 298);
-            this.txtTagsPrefix.Name = "txtTagsPrefix";
-            this.txtTagsPrefix.Size = new System.Drawing.Size(113, 22);
-            this.txtTagsPrefix.TabIndex = 1;
-            // 
-            // txtErrPrefix
-            // 
-            this.txtErrPrefix.Location = new System.Drawing.Point(173, 105);
-            this.txtErrPrefix.Name = "txtErrPrefix";
-            this.txtErrPrefix.Size = new System.Drawing.Size(40, 22);
-            this.txtErrPrefix.TabIndex = 1;
-            this.txtErrPrefix.Text = "$";
-            // 
-            // txtStartErrorNumber
-            // 
-            this.txtStartErrorNumber.Location = new System.Drawing.Point(146, 57);
-            this.txtStartErrorNumber.Name = "txtStartErrorNumber";
-            this.txtStartErrorNumber.Size = new System.Drawing.Size(68, 22);
-            this.txtStartErrorNumber.TabIndex = 1;
-            this.txtStartErrorNumber.Text = "1";
+            this.checkBoxUseDB_Name.AutoSize = true;
+            this.checkBoxUseDB_Name.Location = new System.Drawing.Point(9, 70);
+            this.checkBoxUseDB_Name.Name = "checkBoxUseDB_Name";
+            this.checkBoxUseDB_Name.Size = new System.Drawing.Size(167, 19);
+            this.checkBoxUseDB_Name.TabIndex = 6;
+            this.checkBoxUseDB_Name.Text = "Use Custom Filename";
+            this.checkBoxUseDB_Name.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(6, 21);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(136, 17);
+            this.label9.Size = new System.Drawing.Size(126, 15);
             this.label9.TabIndex = 2;
-            this.label9.Text = "Connection Name:";
+            this.label9.Text = "Custom FileName:";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
-            // txtConnectionName
+            // txtLogfileName
             // 
-            this.txtConnectionName.Location = new System.Drawing.Point(15, 37);
-            this.txtConnectionName.Name = "txtConnectionName";
-            this.txtConnectionName.Size = new System.Drawing.Size(198, 22);
-            this.txtConnectionName.TabIndex = 1;
-            this.txtConnectionName.Text = "Verbindung_1";
+            this.txtLogfileName.Location = new System.Drawing.Point(9, 41);
+            this.txtLogfileName.Name = "txtLogfileName";
+            this.txtLogfileName.Size = new System.Drawing.Size(198, 23);
+            this.txtLogfileName.TabIndex = 1;
+            this.txtLogfileName.Text = "NOV-xxxxxx_LogFile";
             // 
-            // cmdCreateWinCCTags
+            // txtTagsPrefix
             // 
-            this.cmdCreateWinCCTags.Location = new System.Drawing.Point(19, 319);
-            this.cmdCreateWinCCTags.Name = "cmdCreateWinCCTags";
-            this.cmdCreateWinCCTags.Size = new System.Drawing.Size(198, 25);
-            this.cmdCreateWinCCTags.TabIndex = 0;
-            this.cmdCreateWinCCTags.Text = "Create WinCC Tags";
-            this.cmdCreateWinCCTags.UseVisualStyleBackColor = true;
-            this.cmdCreateWinCCTags.Click += new System.EventHandler(this.cmdCreateWinCCTags_Click);
-            // 
-            // cmdCreateWinCCErrorMessages
-            // 
-            this.cmdCreateWinCCErrorMessages.Location = new System.Drawing.Point(19, 171);
-            this.cmdCreateWinCCErrorMessages.Name = "cmdCreateWinCCErrorMessages";
-            this.cmdCreateWinCCErrorMessages.Size = new System.Drawing.Size(198, 44);
-            this.cmdCreateWinCCErrorMessages.TabIndex = 0;
-            this.cmdCreateWinCCErrorMessages.Text = "Create WinCC Error Messages && Tags";
-            this.cmdCreateWinCCErrorMessages.UseVisualStyleBackColor = true;
-            this.cmdCreateWinCCErrorMessages.Click += new System.EventHandler(this.cmdCreateWinCCErrorMessages_Click);
-            // 
-            // cmdCreateFlexibleErrorMessages
-            // 
-            this.cmdCreateFlexibleErrorMessages.Location = new System.Drawing.Point(19, 128);
-            this.cmdCreateFlexibleErrorMessages.Name = "cmdCreateFlexibleErrorMessages";
-            this.cmdCreateFlexibleErrorMessages.Size = new System.Drawing.Size(198, 44);
-            this.cmdCreateFlexibleErrorMessages.TabIndex = 0;
-            this.cmdCreateFlexibleErrorMessages.Text = "Create WinCC-Flexible Error Messages && Tags";
-            this.cmdCreateFlexibleErrorMessages.UseVisualStyleBackColor = true;
-            this.cmdCreateFlexibleErrorMessages.Click += new System.EventHandler(this.cmdCreateFlexibleErrorMessages_Click);
+            this.txtTagsPrefix.Location = new System.Drawing.Point(9, 216);
+            this.txtTagsPrefix.Name = "txtTagsPrefix";
+            this.txtTagsPrefix.Size = new System.Drawing.Size(113, 23);
+            this.txtTagsPrefix.TabIndex = 1;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 3);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(520, 17);
+            this.label5.Size = new System.Drawing.Size(449, 15);
             this.label5.TabIndex = 15;
             this.label5.Text = "Step7, Simatic, WinCC && WinCC Flexible are trademarks of SIEMENS";
             // 
@@ -558,10 +432,10 @@
             this.lblConnInfo,
             this.toolStripStatusLabel1,
             this.lblConnected});
-            this.statusStrip.Location = new System.Drawing.Point(0, 425);
+            this.statusStrip.Location = new System.Drawing.Point(0, 641);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
-            this.statusStrip.Size = new System.Drawing.Size(933, 42);
+            this.statusStrip.Size = new System.Drawing.Size(1113, 42);
             this.statusStrip.SizingGrip = false;
             this.statusStrip.TabIndex = 22;
             this.statusStrip.Text = "statusStrip1";
@@ -576,7 +450,7 @@
             // lblStatus
             // 
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(57, 37);
+            this.lblStatus.Size = new System.Drawing.Size(237, 37);
             this.lblStatus.Spring = true;
             this.lblStatus.Text = "i.o.";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -607,15 +481,15 @@
             this.lstProjects.ItemHeight = 16;
             this.lstProjects.Location = new System.Drawing.Point(3, 3);
             this.lstProjects.Name = "lstProjects";
-            this.lstProjects.Size = new System.Drawing.Size(217, 95);
+            this.lstProjects.Size = new System.Drawing.Size(277, 95);
             this.lstProjects.TabIndex = 24;
             this.lstProjects.DoubleClick += new System.EventHandler(this.lstProjects_DoubleClick);
             // 
             // cmdProjectsBrowser
             // 
             this.cmdProjectsBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmdProjectsBrowser.Font = new System.Drawing.Font("Courier New", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdProjectsBrowser.Location = new System.Drawing.Point(226, 3);
+            this.cmdProjectsBrowser.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.75F);
+            this.cmdProjectsBrowser.Location = new System.Drawing.Point(286, 3);
             this.cmdProjectsBrowser.Name = "cmdProjectsBrowser";
             this.cmdProjectsBrowser.Size = new System.Drawing.Size(78, 95);
             this.cmdProjectsBrowser.TabIndex = 25;
@@ -628,13 +502,12 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.toolsToolStripMenuItem,
             this.optionsToolStripMenuItem,
             this.toolsToolStripMenuItem1,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(933, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1113, 24);
             this.menuStrip1.TabIndex = 26;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -642,7 +515,6 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
-            this.openWithUsernameToolStripMenuItem,
             this.attach14ToolStripMenuItem,
             this.attach15_1ToolStripMenuItem,
             this.exitToolStripMenuItem});
@@ -653,137 +525,30 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
-            // openWithUsernameToolStripMenuItem
-            // 
-            this.openWithUsernameToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openWithUsernameToolStripMenuItem.Text = "Open with Username";
-            this.openWithUsernameToolStripMenuItem.Click += new System.EventHandler(this.openUsernameToolStripMenuItem_Click);
             // 
             // attach14ToolStripMenuItem
             // 
             this.attach14ToolStripMenuItem.Name = "attach14ToolStripMenuItem";
+            this.attach14ToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.attach14ToolStripMenuItem.Text = "Attach V14";
             this.attach14ToolStripMenuItem.Click += new System.EventHandler(this.attachV14_Click);
             // 
-            // openWithUsernameToolStripMenuItem
+            // attach15_1ToolStripMenuItem
             // 
             this.attach15_1ToolStripMenuItem.Name = "attach15_1ToolStripMenuItem";
+            this.attach15_1ToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.attach15_1ToolStripMenuItem.Text = "Attach V15.1";
             this.attach15_1ToolStripMenuItem.Click += new System.EventHandler(this.attachV15_1_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // toolsToolStripMenuItem
-            // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.configConnectionToolStripMenuItem,
-            this.reachablePLCsToolStripMenuItem,
-            this.lstConnections,
-            this.toolStripSeparator1,
-            this.watchToolStripMenuItem,
-            this.unwatchToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.downloadOnlineBlockToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.dBStructResizerToolStripMenuItem,
-            this.dataBlockValueSaveRestoreToolStripMenuItem,
-            this.toolStripSeparator4,
-            this.searchPasswordToolStripMenuItem});
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.toolsToolStripMenuItem.Text = "Online";
-            // 
-            // configConnectionToolStripMenuItem
-            // 
-            this.configConnectionToolStripMenuItem.Name = "configConnectionToolStripMenuItem";
-            this.configConnectionToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.configConnectionToolStripMenuItem.Text = "Config Connection";
-            this.configConnectionToolStripMenuItem.Click += new System.EventHandler(this.configConnectionToolStripMenuItem_Click);
-            // 
-            // reachablePLCsToolStripMenuItem
-            // 
-            this.reachablePLCsToolStripMenuItem.Name = "reachablePLCsToolStripMenuItem";
-            this.reachablePLCsToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.reachablePLCsToolStripMenuItem.Text = "Reachable PLC\'s";
-            this.reachablePLCsToolStripMenuItem.Click += new System.EventHandler(this.reachablePLCsToolStripMenuItem_Click);
-            // 
-            // lstConnections
-            // 
-            this.lstConnections.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.lstConnections.Name = "lstConnections";
-            this.lstConnections.Size = new System.Drawing.Size(121, 23);
-            this.lstConnections.SelectedIndexChanged += new System.EventHandler(this.lstConnections_SelectedIndexChanged_1);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(229, 6);
-            // 
-            // watchToolStripMenuItem
-            // 
-            this.watchToolStripMenuItem.Name = "watchToolStripMenuItem";
-            this.watchToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.watchToolStripMenuItem.Text = "Watch Datablock";
-            this.watchToolStripMenuItem.Click += new System.EventHandler(this.watchToolStripMenuItem_Click);
-            // 
-            // unwatchToolStripMenuItem
-            // 
-            this.unwatchToolStripMenuItem.Name = "unwatchToolStripMenuItem";
-            this.unwatchToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.unwatchToolStripMenuItem.Text = "Unwatch";
-            this.unwatchToolStripMenuItem.Click += new System.EventHandler(this.unwatchToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(229, 6);
-            // 
-            // downloadOnlineBlockToolStripMenuItem
-            // 
-            this.downloadOnlineBlockToolStripMenuItem.Name = "downloadOnlineBlockToolStripMenuItem";
-            this.downloadOnlineBlockToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.downloadOnlineBlockToolStripMenuItem.Text = "Download Online Block";
-            this.downloadOnlineBlockToolStripMenuItem.Click += new System.EventHandler(this.downloadOnlineBlockToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(229, 6);
-            // 
-            // dBStructResizerToolStripMenuItem
-            // 
-            this.dBStructResizerToolStripMenuItem.Name = "dBStructResizerToolStripMenuItem";
-            this.dBStructResizerToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.dBStructResizerToolStripMenuItem.Text = "UDT-Array-Resizer";
-            this.dBStructResizerToolStripMenuItem.Click += new System.EventHandler(this.dBStructResizerToolStripMenuItem_Click);
-            // 
-            // dataBlockValueSaveRestoreToolStripMenuItem
-            // 
-            this.dataBlockValueSaveRestoreToolStripMenuItem.Name = "dataBlockValueSaveRestoreToolStripMenuItem";
-            this.dataBlockValueSaveRestoreToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.dataBlockValueSaveRestoreToolStripMenuItem.Text = "Data Block Value Save/Restore";
-            this.dataBlockValueSaveRestoreToolStripMenuItem.Click += new System.EventHandler(this.dataBlockValueSaveRestoreToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(229, 6);
-            // 
-            // searchPasswordToolStripMenuItem
-            // 
-            this.searchPasswordToolStripMenuItem.Name = "searchPasswordToolStripMenuItem";
-            this.searchPasswordToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.searchPasswordToolStripMenuItem.Text = "Search Password";
-            this.searchPasswordToolStripMenuItem.Click += new System.EventHandler(this.searchPasswordToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -813,49 +578,25 @@
             // toolsToolStripMenuItem1
             // 
             this.toolsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createDokumentationToolStripMenuItem,
             this.parseAllBlocksToolStripMenuItem,
-            this.createAWLToolStripMenuItem,
-            this.dependenciesToolStripMenuItem,
-            this.callHirachyToolStripMenuItem});
+            this.createAWLToolStripMenuItem});
             this.toolsToolStripMenuItem1.Name = "toolsToolStripMenuItem1";
             this.toolsToolStripMenuItem1.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem1.Text = "Tools";
             // 
-            // createDokumentationToolStripMenuItem
-            // 
-            this.createDokumentationToolStripMenuItem.Name = "createDokumentationToolStripMenuItem";
-            this.createDokumentationToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.createDokumentationToolStripMenuItem.Text = "Create Dokumentation";
-            this.createDokumentationToolStripMenuItem.Click += new System.EventHandler(this.createDokumentationToolStripMenuItem_Click);
-            // 
             // parseAllBlocksToolStripMenuItem
             // 
             this.parseAllBlocksToolStripMenuItem.Name = "parseAllBlocksToolStripMenuItem";
-            this.parseAllBlocksToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.parseAllBlocksToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.parseAllBlocksToolStripMenuItem.Text = "Parse all Blocks";
             this.parseAllBlocksToolStripMenuItem.Click += new System.EventHandler(this.parseAllBlocksToolStripMenuItem_Click);
             // 
             // createAWLToolStripMenuItem
             // 
             this.createAWLToolStripMenuItem.Name = "createAWLToolStripMenuItem";
-            this.createAWLToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.createAWLToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.createAWLToolStripMenuItem.Text = "Create AWL";
             this.createAWLToolStripMenuItem.Click += new System.EventHandler(this.createAWLToolStripMenuItem_Click);
-            // 
-            // dependenciesToolStripMenuItem
-            // 
-            this.dependenciesToolStripMenuItem.Name = "dependenciesToolStripMenuItem";
-            this.dependenciesToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.dependenciesToolStripMenuItem.Text = "Dependencies";
-            this.dependenciesToolStripMenuItem.Click += new System.EventHandler(this.dependenciesToolStripMenuItem_Click);
-            // 
-            // callHirachyToolStripMenuItem
-            // 
-            this.callHirachyToolStripMenuItem.Name = "callHirachyToolStripMenuItem";
-            this.callHirachyToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.callHirachyToolStripMenuItem.Text = "Call-Hierarchy";
-            this.callHirachyToolStripMenuItem.Click += new System.EventHandler(this.callHirachyToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -884,14 +625,14 @@
             // 
             // mainSplitContainer.Panel2
             // 
-            this.mainSplitContainer.Panel2.Controls.Add(this.dtaSymbolTable);
             this.mainSplitContainer.Panel2.Controls.Add(this.viewBlockList);
             this.mainSplitContainer.Panel2.Controls.Add(this.datablockView);
             this.mainSplitContainer.Panel2.Controls.Add(this.hexBox);
             this.mainSplitContainer.Panel2.Controls.Add(this.txtTextBox);
             this.mainSplitContainer.Panel2.Controls.Add(this.dtaPnPbList);
-            this.mainSplitContainer.Size = new System.Drawing.Size(927, 327);
-            this.mainSplitContainer.SplitterDistance = 313;
+            this.mainSplitContainer.Panel2.Controls.Add(this.dtaSymbolTable);
+            this.mainSplitContainer.Size = new System.Drawing.Size(1107, 543);
+            this.mainSplitContainer.SplitterDistance = 373;
             this.mainSplitContainer.TabIndex = 26;
             // 
             // tableLayoutPanel1
@@ -902,13 +643,14 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.chkShowDeleted, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 107F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(313, 327);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(373, 543);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -919,11 +661,11 @@
             this.tableLayoutPanel2.Controls.Add(this.lstProjects, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.cmdProjectsBrowser, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 199);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 415);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(307, 101);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(367, 101);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // viewBlockList
@@ -932,7 +674,7 @@
             this.viewBlockList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.viewBlockList.Location = new System.Drawing.Point(0, 0);
             this.viewBlockList.Name = "viewBlockList";
-            this.viewBlockList.Size = new System.Drawing.Size(610, 327);
+            this.viewBlockList.Size = new System.Drawing.Size(730, 543);
             this.viewBlockList.TabIndex = 0;
             this.viewBlockList.TabStop = false;
             this.viewBlockList.Visible = false;
@@ -949,7 +691,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(604, 306);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(724, 522);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -959,9 +701,9 @@
             this.flowLayoutPanel1.Controls.Add(this.cmdUndeleteBlock);
             this.flowLayoutPanel1.Controls.Add(this.txtUndeleteName);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 275);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 491);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(598, 28);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(718, 28);
             this.flowLayoutPanel1.TabIndex = 11;
             // 
             // tableLayoutPanelVisu
@@ -976,7 +718,7 @@
             this.tableLayoutPanelVisu.Name = "tableLayoutPanelVisu";
             this.tableLayoutPanelVisu.RowCount = 1;
             this.tableLayoutPanelVisu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelVisu.Size = new System.Drawing.Size(598, 266);
+            this.tableLayoutPanelVisu.Size = new System.Drawing.Size(718, 482);
             this.tableLayoutPanelVisu.TabIndex = 12;
             // 
             // datablockView
@@ -984,7 +726,7 @@
             this.datablockView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.datablockView.Location = new System.Drawing.Point(0, 0);
             this.datablockView.Name = "datablockView";
-            this.datablockView.Size = new System.Drawing.Size(610, 327);
+            this.datablockView.Size = new System.Drawing.Size(730, 543);
             this.datablockView.TabIndex = 17;
             this.datablockView.Text = "wpfElementHost";
             this.datablockView.Visible = false;
@@ -999,7 +741,7 @@
             this.hexBox.Location = new System.Drawing.Point(0, 0);
             this.hexBox.Name = "hexBox";
             this.hexBox.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hexBox.Size = new System.Drawing.Size(610, 327);
+            this.hexBox.Size = new System.Drawing.Size(730, 543);
             this.hexBox.TabIndex = 18;
             // 
             // dtaPnPbList
@@ -1016,7 +758,7 @@
             this.dtaPnPbList.Location = new System.Drawing.Point(0, 0);
             this.dtaPnPbList.Name = "dtaPnPbList";
             this.dtaPnPbList.RowHeadersWidth = 82;
-            this.dtaPnPbList.Size = new System.Drawing.Size(610, 327);
+            this.dtaPnPbList.Size = new System.Drawing.Size(730, 543);
             this.dtaPnPbList.TabIndex = 19;
             this.dtaPnPbList.Visible = false;
             // 
@@ -1061,11 +803,12 @@
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(933, 401);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1113, 617);
             this.tableLayoutPanel5.TabIndex = 28;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label4);
@@ -1074,14 +817,22 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(927, 62);
+            this.panel1.Size = new System.Drawing.Size(1107, 62);
             this.panel1.TabIndex = 0;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(674, 4);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(109, 37);
+            this.richTextBox1.TabIndex = 16;
+            this.richTextBox1.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(933, 467);
+            this.ClientSize = new System.Drawing.Size(1113, 683);
             this.Controls.Add(this.tableLayoutPanel5);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip1);
@@ -1089,7 +840,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Toolbox for Siemens PLCs (c) 2010/2011 Jochen Kühner";
+            this.Text = "LogFileTool";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtaSymbolTable)).EndInit();
             this.grpVisu.ResumeLayout(false);
@@ -1137,20 +888,10 @@
         private System.Windows.Forms.Button cmdUndeleteBlock;
         private System.Windows.Forms.TextBox txtUndeleteName;
         private System.Windows.Forms.GroupBox grpVisu;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtConnectionName;
-        private System.Windows.Forms.Button cmdCreateWinCCTags;
-        private System.Windows.Forms.Button cmdCreateWinCCErrorMessages;
-        private System.Windows.Forms.Button cmdCreateFlexibleErrorMessages;
-        private System.Windows.Forms.CheckBox chkFixedErrorNumber;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtStartErrorNumber;
         private System.Windows.Forms.ImageList imglstIconsForTreeview;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTagsPrefix;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox chkExpandArrays;
         private System.Windows.Forms.Integration.ElementHost datablockView;
         private TestProjectFileFunctions.DataBlockViewControl dataBlockViewControl;
         private System.Windows.Forms.Timer fetchPLCData;
@@ -1164,9 +905,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem featuresToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openWithUsernameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem attach14ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem attach15_1ToolStripMenuItem;
         private System.Windows.Forms.SplitContainer mainSplitContainer;
@@ -1178,36 +917,16 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelVisu;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripMenuItem configConnectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripComboBox lstConnections;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem watchToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem unwatchToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel lblConnected;
         private System.Windows.Forms.ToolStripStatusLabel lblToolStripFileSystemFolder;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripMenuItem downloadOnlineBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem convertCallsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem dBStructResizerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuExpandDatablockArrays;
-        private System.Windows.Forms.CheckBox chkUseErrPrefix;
-        private System.Windows.Forms.TextBox txtErrPrefix;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem searchPasswordToolStripMenuItem;
-        private System.Windows.Forms.Button cmdCreateWinCCFlexibleTags;
-        private System.Windows.Forms.CheckBox chkCombineStructComments;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem createDokumentationToolStripMenuItem;
         private Be.Windows.Forms.HexBox hexBox;
         private System.Windows.Forms.ToolStripMenuItem parseAllBlocksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createAWLToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dependenciesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem callHirachyToolStripMenuItem;
-        private System.Windows.Forms.Button cmdWebfactoryTags;
-        private System.Windows.Forms.ToolStripMenuItem dataBlockValueSaveRestoreToolStripMenuItem;
         private System.Windows.Forms.DataGridView dtaPnPbList;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -1219,7 +938,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn operandiec;
         private System.Windows.Forms.DataGridViewTextBoxColumn comment;
         private System.Windows.Forms.DataGridViewTextBoxColumn tia_key;
-        private System.Windows.Forms.ToolStripMenuItem reachablePLCsToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtLogfileName;
+        private System.Windows.Forms.CheckBox checkBoxUseDB_Name;
+        private System.Windows.Forms.ListBox testlistbox;
+        private System.Windows.Forms.Button buttonFastLogAWL;
+        private System.Windows.Forms.Button buttonCreateLogFile;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 

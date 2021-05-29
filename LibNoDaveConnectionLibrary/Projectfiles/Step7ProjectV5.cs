@@ -30,7 +30,7 @@ namespace DotNetSiemensPLCToolBoxLibrary.Projectfiles
         const int objectType_MpiDPinCPU = 1314972;
         const int objectType_MpiDP400 = 1315038;
         const int objectType_MpiDP300 = 1315016;
-        
+        public readonly CPFolder myObject;
         private string _offlineblockdb;
 
         internal bool _showDeleted = false;
