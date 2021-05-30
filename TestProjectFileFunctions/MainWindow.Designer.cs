@@ -51,9 +51,17 @@
             this.cmdUndeleteBlock = new System.Windows.Forms.Button();
             this.txtUndeleteName = new System.Windows.Forms.TextBox();
             this.grpVisu = new System.Windows.Forms.GroupBox();
+            this.checkBoxOpenTxt = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxIP = new System.Windows.Forms.TextBox();
+            this.textBoxMPI = new System.Windows.Forms.TextBox();
+            this.textBoxSlot = new System.Windows.Forms.TextBox();
+            this.textBoxRack = new System.Windows.Forms.TextBox();
             this.buttonCreateLogFile = new System.Windows.Forms.Button();
             this.buttonFastLogAWL = new System.Windows.Forms.Button();
-            this.testlistbox = new System.Windows.Forms.ListBox();
             this.checkBoxUseDB_Name = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtLogfileName = new System.Windows.Forms.TextBox();
@@ -90,7 +98,6 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanelVisu = new System.Windows.Forms.TableLayoutPanel();
             this.datablockView = new System.Windows.Forms.Integration.ElementHost();
-            this.hexBox = new Be.Windows.Forms.HexBox();
             this.dtaPnPbList = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,7 +105,8 @@
             this.export = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.hexBox = new Be.Windows.Forms.HexBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtaSymbolTable)).BeginInit();
             this.grpVisu.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -328,9 +336,18 @@
             // 
             // grpVisu
             // 
+            this.grpVisu.Controls.Add(this.checkBox1);
+            this.grpVisu.Controls.Add(this.checkBoxOpenTxt);
+            this.grpVisu.Controls.Add(this.label12);
+            this.grpVisu.Controls.Add(this.label11);
+            this.grpVisu.Controls.Add(this.label10);
+            this.grpVisu.Controls.Add(this.label8);
+            this.grpVisu.Controls.Add(this.textBoxIP);
+            this.grpVisu.Controls.Add(this.textBoxMPI);
+            this.grpVisu.Controls.Add(this.textBoxSlot);
+            this.grpVisu.Controls.Add(this.textBoxRack);
             this.grpVisu.Controls.Add(this.buttonCreateLogFile);
             this.grpVisu.Controls.Add(this.buttonFastLogAWL);
-            this.grpVisu.Controls.Add(this.testlistbox);
             this.grpVisu.Controls.Add(this.checkBoxUseDB_Name);
             this.grpVisu.Controls.Add(this.label9);
             this.grpVisu.Controls.Add(this.txtLogfileName);
@@ -342,11 +359,85 @@
             this.grpVisu.Size = new System.Drawing.Size(232, 476);
             this.grpVisu.TabIndex = 16;
             this.grpVisu.TabStop = false;
-            this.grpVisu.Text = "Toolbox";
+            this.grpVisu.Text = "Logfile Toolbox";
+            // 
+            // checkBoxOpenTxt
+            // 
+            this.checkBoxOpenTxt.AutoSize = true;
+            this.checkBoxOpenTxt.Location = new System.Drawing.Point(10, 95);
+            this.checkBoxOpenTxt.Name = "checkBoxOpenTxt";
+            this.checkBoxOpenTxt.Size = new System.Drawing.Size(218, 19);
+            this.checkBoxOpenTxt.TabIndex = 19;
+            this.checkBoxOpenTxt.Text = "Open Logfile upon completion";
+            this.checkBoxOpenTxt.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 230);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(20, 15);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "IP";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(104, 274);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(26, 15);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "DP";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(56, 274);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(33, 15);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Slot";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 274);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 15);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Rack";
+            // 
+            // textBoxIP
+            // 
+            this.textBoxIP.Location = new System.Drawing.Point(10, 248);
+            this.textBoxIP.Name = "textBoxIP";
+            this.textBoxIP.Size = new System.Drawing.Size(133, 23);
+            this.textBoxIP.TabIndex = 14;
+            // 
+            // textBoxMPI
+            // 
+            this.textBoxMPI.Location = new System.Drawing.Point(106, 292);
+            this.textBoxMPI.Name = "textBoxMPI";
+            this.textBoxMPI.Size = new System.Drawing.Size(37, 23);
+            this.textBoxMPI.TabIndex = 13;
+            // 
+            // textBoxSlot
+            // 
+            this.textBoxSlot.Location = new System.Drawing.Point(59, 292);
+            this.textBoxSlot.Name = "textBoxSlot";
+            this.textBoxSlot.Size = new System.Drawing.Size(37, 23);
+            this.textBoxSlot.TabIndex = 12;
+            // 
+            // textBoxRack
+            // 
+            this.textBoxRack.Location = new System.Drawing.Point(9, 292);
+            this.textBoxRack.Name = "textBoxRack";
+            this.textBoxRack.Size = new System.Drawing.Size(37, 23);
+            this.textBoxRack.TabIndex = 11;
             // 
             // buttonCreateLogFile
             // 
-            this.buttonCreateLogFile.Location = new System.Drawing.Point(9, 265);
+            this.buttonCreateLogFile.Location = new System.Drawing.Point(9, 322);
             this.buttonCreateLogFile.Name = "buttonCreateLogFile";
             this.buttonCreateLogFile.Size = new System.Drawing.Size(207, 71);
             this.buttonCreateLogFile.TabIndex = 10;
@@ -357,21 +448,12 @@
             // buttonFastLogAWL
             // 
             this.buttonFastLogAWL.Enabled = false;
-            this.buttonFastLogAWL.Location = new System.Drawing.Point(9, 342);
+            this.buttonFastLogAWL.Location = new System.Drawing.Point(9, 399);
             this.buttonFastLogAWL.Name = "buttonFastLogAWL";
             this.buttonFastLogAWL.Size = new System.Drawing.Size(207, 71);
             this.buttonFastLogAWL.TabIndex = 9;
             this.buttonFastLogAWL.Text = "Create FastLog FB Incl INT";
             this.buttonFastLogAWL.UseVisualStyleBackColor = true;
-            // 
-            // testlistbox
-            // 
-            this.testlistbox.FormattingEnabled = true;
-            this.testlistbox.ItemHeight = 15;
-            this.testlistbox.Location = new System.Drawing.Point(9, 126);
-            this.testlistbox.Name = "testlistbox";
-            this.testlistbox.Size = new System.Drawing.Size(120, 79);
-            this.testlistbox.TabIndex = 8;
             // 
             // checkBoxUseDB_Name
             // 
@@ -388,9 +470,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(6, 21);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(126, 15);
+            this.label9.Size = new System.Drawing.Size(124, 15);
             this.label9.TabIndex = 2;
-            this.label9.Text = "Custom FileName:";
+            this.label9.Text = "Custom Filename:";
             this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // txtLogfileName
@@ -403,10 +485,11 @@
             // 
             // txtTagsPrefix
             // 
-            this.txtTagsPrefix.Location = new System.Drawing.Point(9, 216);
+            this.txtTagsPrefix.Location = new System.Drawing.Point(9, 293);
             this.txtTagsPrefix.Name = "txtTagsPrefix";
             this.txtTagsPrefix.Size = new System.Drawing.Size(113, 23);
             this.txtTagsPrefix.TabIndex = 1;
+            this.txtTagsPrefix.Visible = false;
             // 
             // label5
             // 
@@ -627,7 +710,6 @@
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.viewBlockList);
             this.mainSplitContainer.Panel2.Controls.Add(this.datablockView);
-            this.mainSplitContainer.Panel2.Controls.Add(this.hexBox);
             this.mainSplitContainer.Panel2.Controls.Add(this.txtTextBox);
             this.mainSplitContainer.Panel2.Controls.Add(this.dtaPnPbList);
             this.mainSplitContainer.Panel2.Controls.Add(this.dtaSymbolTable);
@@ -733,17 +815,6 @@
             this.datablockView.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.elementHost1_ChildChanged);
             this.datablockView.Child = null;
             // 
-            // hexBox
-            // 
-            this.hexBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hexBox.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hexBox.InfoForeColor = System.Drawing.Color.Empty;
-            this.hexBox.Location = new System.Drawing.Point(0, 0);
-            this.hexBox.Name = "hexBox";
-            this.hexBox.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hexBox.Size = new System.Drawing.Size(730, 543);
-            this.hexBox.TabIndex = 18;
-            // 
             // dtaPnPbList
             // 
             this.dtaPnPbList.AllowUserToAddRows = false;
@@ -808,7 +879,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label4);
@@ -820,13 +890,26 @@
             this.panel1.Size = new System.Drawing.Size(1107, 62);
             this.panel1.TabIndex = 0;
             // 
-            // richTextBox1
+            // hexBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(674, 4);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(109, 37);
-            this.richTextBox1.TabIndex = 16;
-            this.richTextBox1.Text = "";
+            this.hexBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hexBox.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hexBox.InfoForeColor = System.Drawing.Color.Empty;
+            this.hexBox.Location = new System.Drawing.Point(0, 0);
+            this.hexBox.Name = "hexBox";
+            this.hexBox.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
+            this.hexBox.Size = new System.Drawing.Size(730, 543);
+            this.hexBox.TabIndex = 18;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(9, 121);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(173, 19);
+            this.checkBox1.TabIndex = 20;
+            this.checkBox1.Text = "checkBoxExpandArray";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -940,10 +1023,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tia_key;
         private System.Windows.Forms.TextBox txtLogfileName;
         private System.Windows.Forms.CheckBox checkBoxUseDB_Name;
-        private System.Windows.Forms.ListBox testlistbox;
         private System.Windows.Forms.Button buttonFastLogAWL;
         private System.Windows.Forms.Button buttonCreateLogFile;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TextBox textBoxIP;
+        private System.Windows.Forms.TextBox textBoxMPI;
+        private System.Windows.Forms.TextBox textBoxSlot;
+        private System.Windows.Forms.TextBox textBoxRack;
+        private System.Windows.Forms.CheckBox checkBoxOpenTxt;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

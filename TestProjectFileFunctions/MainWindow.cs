@@ -20,7 +20,7 @@ using DotNetSiemensPLCToolBoxLibrary.DataTypes.Projectfolders.Step7V5;
 using DotNetSiemensPLCToolBoxLibrary.General;
 using DotNetSiemensPLCToolBoxLibrary.Projectfiles;
 using TestProjectFileFunctions;
-
+using System.Text.RegularExpressions;
 using ToolboxForSiemensPLCs;
 using ToolboxForSiemensPLCs.Properties;
 
@@ -37,10 +37,10 @@ namespace JFK_VarTab
     public partial class Form1 : Form
     {
 
-        int CP_Slot = 2;
-        int CP_Rack = 0;
-        int CP_MPI = 0;
-        string CP_IP = "0";
+        string CPU_Slot = "66";
+        string CPU_Rack = "77";
+        string CPU_MPI = "88";
+        string CP_IP = "192.168.10.107";
 
         public Form1()
         {
@@ -323,7 +323,21 @@ namespace JFK_VarTab
                 }
                 else if (tmp.myObject is CPUFolder)
                 {
+                    var cp = tmp.myObject as CPFolder; // Sneaky Sneaky pick up IP Address from CP Folder             
+
                     var cpu = tmp.myObject as CPUFolder;
+
+                    //Get CPU Slot, Rack
+                    CPU_Slot = cpu.Slot.ToString();
+                    CPU_Rack = cpu.Rack.ToString();
+
+                    //Slot
+                    textBoxSlot.Text = CPU_Slot;
+
+                    //Rack
+                    textBoxRack.Text = CPU_Rack;
+
+
                     if (oldNode != treeStep7Project.SelectedNode)
                     {
                         lstListBox.Items.Clear();
@@ -335,6 +349,16 @@ namespace JFK_VarTab
                             foreach (var networkInterface in cpu.NetworkInterfaces)
                             {
                                 lstListBox.Items.Add("Network-Interface: " + networkInterface.ToString());
+                            }
+                            foreach (string line in lstListBox.Items) // Pick Up DP or MPI Address from CPU.
+                            {
+                                if (Regex.IsMatch(line, @"\bMPI|\bDP")) //Separer ut kun linjer som inneholder MPI 
+                                {
+                                    string line2 = "";
+                                    line2 = Regex.Replace(line, "[^0-9.]", "");
+                                    CPU_MPI = line2;
+                                    textBoxMPI.Text = CPU_MPI;
+                                }
                             }
                         }
                     }
@@ -352,6 +376,16 @@ namespace JFK_VarTab
 
                         {
                             lstListBox.Items.Add(line);
+                        }
+                        foreach (string linez in lstListBox.Items) // Pick Up DP or MPI Address from CPU.
+                        {
+                            if (Regex.IsMatch(linez, @"((?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)))")) //Separer ut kun linjer som inneholder MPI 
+                            {
+                                string IP = "";
+                                IP = Regex.Replace(linez, "^.*(?=\\b192)", "");
+                                CP_IP = IP;
+                                textBoxIP.Text = CP_IP;                             
+                            }
                         }
                     }
                     viewBlockList.Visible = true;
@@ -761,11 +795,11 @@ namespace JFK_VarTab
             stRz.ShowDialog();
         }
 
-       
 
+        
 
         private void buttonCreateLogFile_Click(object sender, EventArgs e) //Kenneth
-    
+          
         {
 
             S7DataBlock myDB =
@@ -775,8 +809,7 @@ namespace JFK_VarTab
             myLst = S7DataRow.GetChildrowsAsList(((S7DataRow) myDB.Structure)); // myDB.GetRowsAsList();
 
             
-            string Slot = CP_Slot.ToString();
-            richTextBox1.Text = Slot;
+
             string tags = "";
 
             foreach (S7DataRow plcDataRow in myLst) // myDB.GetRowsAsList())
@@ -864,10 +897,15 @@ namespace JFK_VarTab
                 System.IO.StreamWriter swr;
 
                 swr = new System.IO.StreamWriter(fldDlg.SelectedPath + "\\" + filename + ".txt");
-                swr.WriteLine("#" + "MPI" + ";" + "Slot"); //Write the first two lines
-                swr.WriteLine("@" + "Rack" + ";" + "IP");
+                swr.WriteLine("#" + CPU_MPI + ";" + CPU_Slot); //Write the first two lines
+                swr.WriteLine("@" + CPU_Rack + ";" + CP_IP);
                 swr.Write(tags.Replace("\t", ";"));
                 swr.Close();
+                if (checkBoxOpenTxt.Checked)
+                {
+                    System.Diagnostics.Process.Start(fldDlg.SelectedPath + "\\" + filename + ".txt");
+                }
+                
             }
         }
   
@@ -1013,7 +1051,10 @@ namespace JFK_VarTab
 
         }
 
- 
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class WEBfactoryTag
