@@ -51,6 +51,7 @@
             this.cmdUndeleteBlock = new System.Windows.Forms.Button();
             this.txtUndeleteName = new System.Windows.Forms.TextBox();
             this.grpVisu = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBoxOpenTxt = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -106,7 +107,6 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.hexBox = new Be.Windows.Forms.HexBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtaSymbolTable)).BeginInit();
             this.grpVisu.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -129,7 +129,7 @@
             // 
             // lblProjectInfo
             // 
-            this.lblProjectInfo.Location = new System.Drawing.Point(109, 41);
+            this.lblProjectInfo.Location = new System.Drawing.Point(95, 41);
             this.lblProjectInfo.Name = "lblProjectInfo";
             this.lblProjectInfo.Size = new System.Drawing.Size(690, 13);
             this.lblProjectInfo.TabIndex = 3;
@@ -137,7 +137,7 @@
             // 
             // lblProjectName
             // 
-            this.lblProjectName.Location = new System.Drawing.Point(109, 28);
+            this.lblProjectName.Location = new System.Drawing.Point(100, 26);
             this.lblProjectName.Name = "lblProjectName";
             this.lblProjectName.Size = new System.Drawing.Size(643, 13);
             this.lblProjectName.TabIndex = 3;
@@ -360,6 +360,16 @@
             this.grpVisu.TabIndex = 16;
             this.grpVisu.TabStop = false;
             this.grpVisu.Text = "Logfile Toolbox";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(9, 121);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(173, 19);
+            this.checkBox1.TabIndex = 20;
+            this.checkBox1.Text = "checkBoxExpandArray";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // checkBoxOpenTxt
             // 
@@ -900,16 +910,6 @@
             this.hexBox.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
             this.hexBox.Size = new System.Drawing.Size(730, 543);
             this.hexBox.TabIndex = 18;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(9, 121);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(173, 19);
-            this.checkBox1.TabIndex = 20;
-            this.checkBox1.Text = "checkBoxExpandArray";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
