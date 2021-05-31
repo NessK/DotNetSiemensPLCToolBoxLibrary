@@ -129,6 +129,7 @@
             // 
             // lblProjectInfo
             // 
+            this.lblProjectInfo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProjectInfo.Location = new System.Drawing.Point(95, 41);
             this.lblProjectInfo.Name = "lblProjectInfo";
             this.lblProjectInfo.Size = new System.Drawing.Size(690, 13);
@@ -137,6 +138,7 @@
             // 
             // lblProjectName
             // 
+            this.lblProjectName.Font = new System.Drawing.Font("Arial", 9.75F);
             this.lblProjectName.Location = new System.Drawing.Point(100, 26);
             this.lblProjectName.Name = "lblProjectName";
             this.lblProjectName.Size = new System.Drawing.Size(643, 13);
@@ -684,7 +686,7 @@
             // 
             this.parseAllBlocksToolStripMenuItem.Enabled = false;
             this.parseAllBlocksToolStripMenuItem.Name = "parseAllBlocksToolStripMenuItem";
-            this.parseAllBlocksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.parseAllBlocksToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.parseAllBlocksToolStripMenuItem.Text = "Parse all Blocks";
             this.parseAllBlocksToolStripMenuItem.Click += new System.EventHandler(this.parseAllBlocksToolStripMenuItem_Click);
             // 
@@ -692,7 +694,7 @@
             // 
             this.createAWLToolStripMenuItem.Enabled = false;
             this.createAWLToolStripMenuItem.Name = "createAWLToolStripMenuItem";
-            this.createAWLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createAWLToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.createAWLToolStripMenuItem.Text = "Create AWL";
             this.createAWLToolStripMenuItem.Click += new System.EventHandler(this.createAWLToolStripMenuItem_Click);
             // 
@@ -708,7 +710,7 @@
             // 
             this.featuresToolStripMenuItem.Enabled = false;
             this.featuresToolStripMenuItem.Name = "featuresToolStripMenuItem";
-            this.featuresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.featuresToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.featuresToolStripMenuItem.Text = "Features";
             this.featuresToolStripMenuItem.Click += new System.EventHandler(this.featuresToolStripMenuItem_Click);
             // 
