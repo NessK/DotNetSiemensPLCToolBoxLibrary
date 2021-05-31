@@ -51,7 +51,6 @@
             this.cmdUndeleteBlock = new System.Windows.Forms.Button();
             this.txtUndeleteName = new System.Windows.Forms.TextBox();
             this.grpVisu = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBoxOpenTxt = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -107,6 +106,7 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.hexBox = new Be.Windows.Forms.HexBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtaSymbolTable)).BeginInit();
             this.grpVisu.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -129,7 +129,7 @@
             // 
             // lblProjectInfo
             // 
-            this.lblProjectInfo.Location = new System.Drawing.Point(100, 39);
+            this.lblProjectInfo.Location = new System.Drawing.Point(109, 41);
             this.lblProjectInfo.Name = "lblProjectInfo";
             this.lblProjectInfo.Size = new System.Drawing.Size(690, 13);
             this.lblProjectInfo.TabIndex = 3;
@@ -137,7 +137,7 @@
             // 
             // lblProjectName
             // 
-            this.lblProjectName.Location = new System.Drawing.Point(100, 26);
+            this.lblProjectName.Location = new System.Drawing.Point(109, 28);
             this.lblProjectName.Name = "lblProjectName";
             this.lblProjectName.Size = new System.Drawing.Size(643, 13);
             this.lblProjectName.TabIndex = 3;
@@ -361,21 +361,10 @@
             this.grpVisu.TabStop = false;
             this.grpVisu.Text = "Logfile Toolbox";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(9, 121);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(120, 19);
-            this.checkBox1.TabIndex = 20;
-            this.checkBox1.Text = "Expand Arrays";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // checkBoxOpenTxt
             // 
             this.checkBoxOpenTxt.AutoSize = true;
-            this.checkBoxOpenTxt.Location = new System.Drawing.Point(9, 95);
+            this.checkBoxOpenTxt.Location = new System.Drawing.Point(10, 95);
             this.checkBoxOpenTxt.Name = "checkBoxOpenTxt";
             this.checkBoxOpenTxt.Size = new System.Drawing.Size(218, 19);
             this.checkBoxOpenTxt.TabIndex = 19;
@@ -625,7 +614,6 @@
             // 
             // attach14ToolStripMenuItem
             // 
-            this.attach14ToolStripMenuItem.Enabled = false;
             this.attach14ToolStripMenuItem.Name = "attach14ToolStripMenuItem";
             this.attach14ToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.attach14ToolStripMenuItem.Text = "Attach V14";
@@ -633,7 +621,6 @@
             // 
             // attach15_1ToolStripMenuItem
             // 
-            this.attach15_1ToolStripMenuItem.Enabled = false;
             this.attach15_1ToolStripMenuItem.Name = "attach15_1ToolStripMenuItem";
             this.attach15_1ToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.attach15_1ToolStripMenuItem.Text = "Attach V15.1";
@@ -659,7 +646,6 @@
             // 
             this.convertCallsToolStripMenuItem.Checked = true;
             this.convertCallsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.convertCallsToolStripMenuItem.Enabled = false;
             this.convertCallsToolStripMenuItem.Name = "convertCallsToolStripMenuItem";
             this.convertCallsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.convertCallsToolStripMenuItem.Text = "Convert UCs to Calls";
@@ -667,7 +653,6 @@
             // 
             // mnuExpandDatablockArrays
             // 
-            this.mnuExpandDatablockArrays.Enabled = false;
             this.mnuExpandDatablockArrays.Name = "mnuExpandDatablockArrays";
             this.mnuExpandDatablockArrays.Size = new System.Drawing.Size(204, 22);
             this.mnuExpandDatablockArrays.Text = "Expand Datablock Arrays";
@@ -684,7 +669,6 @@
             // 
             // parseAllBlocksToolStripMenuItem
             // 
-            this.parseAllBlocksToolStripMenuItem.Enabled = false;
             this.parseAllBlocksToolStripMenuItem.Name = "parseAllBlocksToolStripMenuItem";
             this.parseAllBlocksToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.parseAllBlocksToolStripMenuItem.Text = "Parse all Blocks";
@@ -692,7 +676,6 @@
             // 
             // createAWLToolStripMenuItem
             // 
-            this.createAWLToolStripMenuItem.Enabled = false;
             this.createAWLToolStripMenuItem.Name = "createAWLToolStripMenuItem";
             this.createAWLToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.createAWLToolStripMenuItem.Text = "Create AWL";
@@ -708,7 +691,6 @@
             // 
             // featuresToolStripMenuItem
             // 
-            this.featuresToolStripMenuItem.Enabled = false;
             this.featuresToolStripMenuItem.Name = "featuresToolStripMenuItem";
             this.featuresToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.featuresToolStripMenuItem.Text = "Features";
@@ -918,6 +900,16 @@
             this.hexBox.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
             this.hexBox.Size = new System.Drawing.Size(730, 543);
             this.hexBox.TabIndex = 18;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(9, 121);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(173, 19);
+            this.checkBox1.TabIndex = 20;
+            this.checkBox1.Text = "checkBoxExpandArray";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

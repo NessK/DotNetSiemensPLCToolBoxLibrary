@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestLibrary", "TestLibrary\
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "TestVB", "TestVB\TestVB.vbproj", "{1182E730-FA4F-4712-8B8B-6432848C3048}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogFileSetup", "TestProjectFileFunctions\LogFileSetup.csproj", "{9EB7BDB5-FDEE-466A-B2FF-63F087B160CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolboxForSiemensPLCs", "TestProjectFileFunctions\ToolboxForSiemensPLCs.csproj", "{9EB7BDB5-FDEE-466A-B2FF-63F087B160CE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFToolboxForSiemensPLCs", "WPFToolboxForPLCs\WPFToolboxForSiemensPLCs.csproj", "{383B1EB0-E39D-41D4-BAE8-FFC619C33AD8}"
 EndProject
