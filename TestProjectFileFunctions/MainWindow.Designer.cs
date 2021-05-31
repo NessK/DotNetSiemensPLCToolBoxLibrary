@@ -272,6 +272,7 @@
             this.chkShowDeleted.TabIndex = 8;
             this.chkShowDeleted.Text = "Show deleted";
             this.chkShowDeleted.UseVisualStyleBackColor = true;
+            this.chkShowDeleted.Visible = false;
             this.chkShowDeleted.CheckedChanged += new System.EventHandler(this.chkShowDeleted_CheckedChanged);
             // 
             // label3
