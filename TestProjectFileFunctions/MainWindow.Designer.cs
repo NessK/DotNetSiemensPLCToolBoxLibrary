@@ -367,7 +367,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(9, 121);
+            this.checkBox1.Location = new System.Drawing.Point(9, 120);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(173, 19);
             this.checkBox1.TabIndex = 20;
@@ -377,7 +377,7 @@
             // checkBoxOpenTxt
             // 
             this.checkBoxOpenTxt.AutoSize = true;
-            this.checkBoxOpenTxt.Location = new System.Drawing.Point(10, 95);
+            this.checkBoxOpenTxt.Location = new System.Drawing.Point(9, 95);
             this.checkBoxOpenTxt.Name = "checkBoxOpenTxt";
             this.checkBoxOpenTxt.Size = new System.Drawing.Size(218, 19);
             this.checkBoxOpenTxt.TabIndex = 19;
@@ -621,7 +621,7 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -629,7 +629,7 @@
             // 
             this.attach14ToolStripMenuItem.Enabled = false;
             this.attach14ToolStripMenuItem.Name = "attach14ToolStripMenuItem";
-            this.attach14ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.attach14ToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.attach14ToolStripMenuItem.Text = "Attach V14";
             this.attach14ToolStripMenuItem.Click += new System.EventHandler(this.attachV14_Click);
             // 
@@ -637,14 +637,14 @@
             // 
             this.attach15_1ToolStripMenuItem.Enabled = false;
             this.attach15_1ToolStripMenuItem.Name = "attach15_1ToolStripMenuItem";
-            this.attach15_1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.attach15_1ToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.attach15_1ToolStripMenuItem.Text = "Attach V15.1";
             this.attach15_1ToolStripMenuItem.Click += new System.EventHandler(this.attachV15_1_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
