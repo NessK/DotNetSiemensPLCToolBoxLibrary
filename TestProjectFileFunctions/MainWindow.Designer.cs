@@ -152,7 +152,7 @@
             this.treeStep7Project.Location = new System.Drawing.Point(3, 3);
             this.treeStep7Project.Name = "treeStep7Project";
             this.treeStep7Project.SelectedImageIndex = 0;
-            this.treeStep7Project.Size = new System.Drawing.Size(367, 406);
+            this.treeStep7Project.Size = new System.Drawing.Size(243, 322);
             this.treeStep7Project.TabIndex = 4;
             this.treeStep7Project.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeStep7Project_BeforeCollapse);
             this.treeStep7Project.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeStep7Project_BeforeExpand);
@@ -194,7 +194,7 @@
             this.dtaSymbolTable.Location = new System.Drawing.Point(0, 0);
             this.dtaSymbolTable.Name = "dtaSymbolTable";
             this.dtaSymbolTable.RowHeadersWidth = 82;
-            this.dtaSymbolTable.Size = new System.Drawing.Size(730, 543);
+            this.dtaSymbolTable.Size = new System.Drawing.Size(529, 459);
             this.dtaSymbolTable.TabIndex = 5;
             this.dtaSymbolTable.Visible = false;
             // 
@@ -247,7 +247,7 @@
             this.lstListBox.ItemHeight = 16;
             this.lstListBox.Location = new System.Drawing.Point(3, 3);
             this.lstListBox.Name = "lstListBox";
-            this.lstListBox.Size = new System.Drawing.Size(474, 476);
+            this.lstListBox.Size = new System.Drawing.Size(273, 392);
             this.lstListBox.TabIndex = 6;
             this.lstListBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.lstListBox.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
@@ -260,7 +260,7 @@
             this.txtTextBox.Multiline = true;
             this.txtTextBox.Name = "txtTextBox";
             this.txtTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtTextBox.Size = new System.Drawing.Size(730, 543);
+            this.txtTextBox.Size = new System.Drawing.Size(529, 459);
             this.txtTextBox.TabIndex = 7;
             this.txtTextBox.Visible = false;
             this.txtTextBox.WordWrap = false;
@@ -268,7 +268,7 @@
             // chkShowDeleted
             // 
             this.chkShowDeleted.AutoSize = true;
-            this.chkShowDeleted.Location = new System.Drawing.Point(3, 522);
+            this.chkShowDeleted.Location = new System.Drawing.Point(3, 438);
             this.chkShowDeleted.Name = "chkShowDeleted";
             this.chkShowDeleted.Size = new System.Drawing.Size(105, 18);
             this.chkShowDeleted.TabIndex = 8;
@@ -319,7 +319,7 @@
             // 
             // cmdUndeleteBlock
             // 
-            this.cmdUndeleteBlock.Location = new System.Drawing.Point(365, 3);
+            this.cmdUndeleteBlock.Location = new System.Drawing.Point(3, 33);
             this.cmdUndeleteBlock.Name = "cmdUndeleteBlock";
             this.cmdUndeleteBlock.Size = new System.Drawing.Size(164, 24);
             this.cmdUndeleteBlock.TabIndex = 12;
@@ -330,7 +330,7 @@
             // 
             // txtUndeleteName
             // 
-            this.txtUndeleteName.Location = new System.Drawing.Point(535, 3);
+            this.txtUndeleteName.Location = new System.Drawing.Point(173, 33);
             this.txtUndeleteName.Name = "txtUndeleteName";
             this.txtUndeleteName.Size = new System.Drawing.Size(68, 22);
             this.txtUndeleteName.TabIndex = 13;
@@ -357,9 +357,10 @@
             this.grpVisu.Controls.Add(this.txtTagsPrefix);
             this.grpVisu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpVisu.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.grpVisu.Location = new System.Drawing.Point(483, 3);
+            this.grpVisu.Location = new System.Drawing.Point(282, 3);
+            this.grpVisu.MinimumSize = new System.Drawing.Size(232, 392);
             this.grpVisu.Name = "grpVisu";
-            this.grpVisu.Size = new System.Drawing.Size(232, 476);
+            this.grpVisu.Size = new System.Drawing.Size(232, 392);
             this.grpVisu.TabIndex = 16;
             this.grpVisu.TabStop = false;
             this.grpVisu.Text = "Logfile Toolbox";
@@ -529,10 +530,10 @@
             this.lblConnInfo,
             this.toolStripStatusLabel1,
             this.lblConnected});
-            this.statusStrip.Location = new System.Drawing.Point(0, 641);
+            this.statusStrip.Location = new System.Drawing.Point(0, 557);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1113, 42);
+            this.statusStrip.Size = new System.Drawing.Size(788, 42);
             this.statusStrip.SizingGrip = false;
             this.statusStrip.TabIndex = 22;
             this.statusStrip.Text = "statusStrip1";
@@ -578,7 +579,7 @@
             this.lstProjects.ItemHeight = 16;
             this.lstProjects.Location = new System.Drawing.Point(3, 3);
             this.lstProjects.Name = "lstProjects";
-            this.lstProjects.Size = new System.Drawing.Size(277, 95);
+            this.lstProjects.Size = new System.Drawing.Size(153, 95);
             this.lstProjects.TabIndex = 24;
             this.lstProjects.DoubleClick += new System.EventHandler(this.lstProjects_DoubleClick);
             // 
@@ -586,7 +587,7 @@
             // 
             this.cmdProjectsBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmdProjectsBrowser.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.75F);
-            this.cmdProjectsBrowser.Location = new System.Drawing.Point(286, 3);
+            this.cmdProjectsBrowser.Location = new System.Drawing.Point(162, 3);
             this.cmdProjectsBrowser.Name = "cmdProjectsBrowser";
             this.cmdProjectsBrowser.Size = new System.Drawing.Size(78, 95);
             this.cmdProjectsBrowser.TabIndex = 25;
@@ -604,7 +605,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1113, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(788, 24);
             this.menuStrip1.TabIndex = 26;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -732,8 +733,8 @@
             this.mainSplitContainer.Panel2.Controls.Add(this.txtTextBox);
             this.mainSplitContainer.Panel2.Controls.Add(this.dtaPnPbList);
             this.mainSplitContainer.Panel2.Controls.Add(this.dtaSymbolTable);
-            this.mainSplitContainer.Size = new System.Drawing.Size(1107, 543);
-            this.mainSplitContainer.SplitterDistance = 373;
+            this.mainSplitContainer.Size = new System.Drawing.Size(782, 459);
+            this.mainSplitContainer.SplitterDistance = 249;
             this.mainSplitContainer.TabIndex = 26;
             // 
             // tableLayoutPanel1
@@ -751,7 +752,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 107F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(373, 543);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(249, 459);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -762,11 +763,11 @@
             this.tableLayoutPanel2.Controls.Add(this.lstProjects, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.cmdProjectsBrowser, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 415);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 331);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(367, 101);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(243, 101);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // viewBlockList
@@ -775,7 +776,7 @@
             this.viewBlockList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.viewBlockList.Location = new System.Drawing.Point(0, 0);
             this.viewBlockList.Name = "viewBlockList";
-            this.viewBlockList.Size = new System.Drawing.Size(730, 543);
+            this.viewBlockList.Size = new System.Drawing.Size(529, 459);
             this.viewBlockList.TabIndex = 0;
             this.viewBlockList.TabStop = false;
             this.viewBlockList.Visible = false;
@@ -792,7 +793,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(724, 522);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(523, 438);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -802,9 +803,9 @@
             this.flowLayoutPanel1.Controls.Add(this.cmdUndeleteBlock);
             this.flowLayoutPanel1.Controls.Add(this.txtUndeleteName);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 491);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 407);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(718, 28);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(517, 28);
             this.flowLayoutPanel1.TabIndex = 11;
             // 
             // tableLayoutPanelVisu
@@ -819,7 +820,7 @@
             this.tableLayoutPanelVisu.Name = "tableLayoutPanelVisu";
             this.tableLayoutPanelVisu.RowCount = 1;
             this.tableLayoutPanelVisu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelVisu.Size = new System.Drawing.Size(718, 482);
+            this.tableLayoutPanelVisu.Size = new System.Drawing.Size(517, 398);
             this.tableLayoutPanelVisu.TabIndex = 12;
             // 
             // datablockView
@@ -827,7 +828,7 @@
             this.datablockView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.datablockView.Location = new System.Drawing.Point(0, 0);
             this.datablockView.Name = "datablockView";
-            this.datablockView.Size = new System.Drawing.Size(730, 543);
+            this.datablockView.Size = new System.Drawing.Size(529, 459);
             this.datablockView.TabIndex = 17;
             this.datablockView.Text = "wpfElementHost";
             this.datablockView.Visible = false;
@@ -848,7 +849,7 @@
             this.dtaPnPbList.Location = new System.Drawing.Point(0, 0);
             this.dtaPnPbList.Name = "dtaPnPbList";
             this.dtaPnPbList.RowHeadersWidth = 82;
-            this.dtaPnPbList.Size = new System.Drawing.Size(730, 543);
+            this.dtaPnPbList.Size = new System.Drawing.Size(529, 459);
             this.dtaPnPbList.TabIndex = 19;
             this.dtaPnPbList.Visible = false;
             // 
@@ -893,7 +894,7 @@
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1113, 617);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(788, 533);
             this.tableLayoutPanel5.TabIndex = 28;
             // 
             // panel1
@@ -906,7 +907,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1107, 62);
+            this.panel1.Size = new System.Drawing.Size(782, 62);
             this.panel1.TabIndex = 0;
             // 
             // hexBox
@@ -924,7 +925,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1113, 683);
+            this.ClientSize = new System.Drawing.Size(788, 599);
             this.Controls.Add(this.tableLayoutPanel5);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip1);
