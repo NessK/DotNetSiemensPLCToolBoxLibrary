@@ -371,11 +371,12 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
             this.checkBox1.Location = new System.Drawing.Point(9, 120);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(173, 19);
+            this.checkBox1.Size = new System.Drawing.Size(142, 19);
             this.checkBox1.TabIndex = 20;
-            this.checkBox1.Text = "checkBoxExpandArray";
+            this.checkBox1.Text = "Expand DB Arrays";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // checkBoxOpenTxt
