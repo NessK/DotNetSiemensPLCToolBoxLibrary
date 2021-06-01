@@ -410,7 +410,7 @@ namespace JFK_VarTab
                 viewBlockList.Visible = false;
 
                 lblStatus.Text = ((ProjectBlockInfo)lstListBox.SelectedItem).ToString();
-
+                
                 Block tmp;
                 if (blkFld is BlocksOfflineFolder)
                     tmp = ((BlocksOfflineFolder)blkFld).GetBlock((ProjectBlockInfo)lstListBox.SelectedItem,
@@ -815,16 +815,13 @@ namespace JFK_VarTab
             foreach (S7DataRow plcDataRow in myLst) // myDB.GetRowsAsList())
             {
                 string tagName = txtTagsPrefix.Text +
-                                 plcDataRow.StructuredName.Replace(".", "_")
-                                     .Replace("[", "_")
-                                     .Replace("]", "")
-                                     .Replace(" ", "")
-                                     .Replace(",", "_");
+                                 plcDataRow.StructuredName;
+                
 
                 switch (plcDataRow.DataType)
                 {
                     case S7DataRowType.BOOL:
-                        tags += myDB.SymbolOrName + "." + plcDataRow.Name + ";" + myDB.BlockNumber + ";" +
+                        tags += myDB.SymbolOrName + "." + plcDataRow.StructuredName + ";" + myDB.BlockNumber + ";" +
                                 plcDataRow.BlockAddress.ByteAddress.ToString() + ";" + "1" + ";" +
                                 plcDataRow.BlockAddress.BitAddress.ToString() + "\r\n";
                         break;
@@ -844,7 +841,7 @@ namespace JFK_VarTab
                      
                         break;
                     case S7DataRowType.REAL:
-                        tags += myDB.SymbolOrName + "." + plcDataRow.Name + ";" + myDB.BlockNumber + ";" +
+                        tags += myDB.SymbolOrName + "." + plcDataRow.StructuredName + ";" + myDB.BlockNumber + ";" +
                                 plcDataRow.BlockAddress.ByteAddress.ToString() + ";" + "2" + ";" +
                                 "2" + "\r\n";
                         break;
