@@ -355,7 +355,7 @@
             this.grpVisu.Controls.Add(this.label9);
             this.grpVisu.Controls.Add(this.txtLogfileName);
             this.grpVisu.Controls.Add(this.txtTagsPrefix);
-            this.grpVisu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpVisu.Dock = System.Windows.Forms.DockStyle.Right;
             this.grpVisu.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
             this.grpVisu.Location = new System.Drawing.Point(282, 3);
             this.grpVisu.MinimumSize = new System.Drawing.Size(232, 392);
@@ -548,7 +548,7 @@
             // lblStatus
             // 
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(237, 37);
+            this.lblStatus.Size = new System.Drawing.Size(1, 37);
             this.lblStatus.Spring = true;
             this.lblStatus.Text = "i.o.";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
