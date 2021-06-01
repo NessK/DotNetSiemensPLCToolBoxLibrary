@@ -355,10 +355,9 @@
             this.grpVisu.Controls.Add(this.label9);
             this.grpVisu.Controls.Add(this.txtLogfileName);
             this.grpVisu.Controls.Add(this.txtTagsPrefix);
-            this.grpVisu.Dock = System.Windows.Forms.DockStyle.Right;
+            this.grpVisu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpVisu.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
             this.grpVisu.Location = new System.Drawing.Point(282, 3);
-            this.grpVisu.MinimumSize = new System.Drawing.Size(232, 392);
             this.grpVisu.Name = "grpVisu";
             this.grpVisu.Size = new System.Drawing.Size(232, 392);
             this.grpVisu.TabIndex = 16;
