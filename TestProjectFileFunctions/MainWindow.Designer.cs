@@ -665,6 +665,7 @@
             this.convertCallsToolStripMenuItem.Name = "convertCallsToolStripMenuItem";
             this.convertCallsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.convertCallsToolStripMenuItem.Text = "Convert UCs to Calls";
+            this.convertCallsToolStripMenuItem.Visible = false;
             this.convertCallsToolStripMenuItem.Click += new System.EventHandler(this.convertCallsToolStripMenuItem_Click);
             // 
             // mnuExpandDatablockArrays

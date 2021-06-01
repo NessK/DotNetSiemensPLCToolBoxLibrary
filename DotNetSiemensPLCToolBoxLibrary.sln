@@ -666,14 +666,19 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Default = Debug|Default
 		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
 		Release|Any CPU = Release|Any CPU
 		Release|Default = Release|Default
 		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Default = Debug|Default
 		Debug|iPhone = Debug|iPhone
+		Release|Any CPU = Release|Any CPU
+		Release|Default = Release|Default
+		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
