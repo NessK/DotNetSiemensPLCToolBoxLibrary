@@ -843,7 +843,7 @@ namespace JFK_VarTab
                     case S7DataRowType.REAL:
                         tags += myDB.SymbolOrName + "." + plcDataRow.StructuredName + ";" + myDB.BlockNumber + ";" +
                                 plcDataRow.BlockAddress.ByteAddress.ToString() + ";" + "2" + ";" +
-                                "2" + "\r\n";
+                                "0" + "\r\n";
                         break;
                     case S7DataRowType.CHAR:
                         
