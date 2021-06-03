@@ -37,9 +37,9 @@ namespace JFK_VarTab
     public partial class Form1 : Form
     {
 
-        string CPU_Slot = "66";
-        string CPU_Rack = "77";
-        string CPU_MPI = "88";
+        string CPU_Slot = "2";
+        string CPU_Rack = "0";
+        string CPU_MPI = "2";
         string CP_IP = "192.168.10.107";
 
         public Form1()
