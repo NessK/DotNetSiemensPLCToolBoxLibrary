@@ -808,10 +808,11 @@ namespace JFK_VarTab
             List<DataBlockRow> myLst = null;
             myLst = S7DataRow.GetChildrowsAsList(((S7DataRow) myDB.Structure)); // myDB.GetRowsAsList();
 
-            
-
             string tags = "";
-
+            string temptags = "";
+            if (myDB.IsInstanceDB)
+            { 
+            
             foreach (S7DataRow plcDataRow in myLst) // myDB.GetRowsAsList())
             {
                 string tagName = txtTagsPrefix.Text +
@@ -821,9 +822,10 @@ namespace JFK_VarTab
                 switch (plcDataRow.DataType)
                 {
                     case S7DataRowType.BOOL:
-                        tags += myDB.SymbolOrName + "." + plcDataRow.StructuredName + ";" + myDB.BlockNumber + ";" +
+                        temptags += myDB.SymbolOrName + "." + plcDataRow.StructuredName + ";" + myDB.BlockNumber + ";" +
                                 plcDataRow.BlockAddress.ByteAddress.ToString() + ";" + "1" + ";" +
                                 plcDataRow.BlockAddress.BitAddress.ToString() + "\r\n";
+                        tags = temptags.Replace(".STATIC.", ".");
                         break;
                     case S7DataRowType.INT:
                     
@@ -841,9 +843,10 @@ namespace JFK_VarTab
                      
                         break;
                     case S7DataRowType.REAL:
-                        tags += myDB.SymbolOrName + "." + plcDataRow.StructuredName + ";" + myDB.BlockNumber + ";" +
+                        temptags += myDB.SymbolOrName + "." + plcDataRow.StructuredName + ";" + myDB.BlockNumber + ";" +
                                 plcDataRow.BlockAddress.ByteAddress.ToString() + ";" + "2" + ";" +
                                 "0" + "\r\n";
+                        tags = temptags.Replace(".STATIC.", ".");
                         break;
                     case S7DataRowType.CHAR:
                         
@@ -872,6 +875,72 @@ namespace JFK_VarTab
                     case S7DataRowType.TIMER:
                         
                         break;
+                }
+            }
+            }
+            else
+            {
+                foreach (S7DataRow plcDataRow in myLst) // myDB.GetRowsAsList())
+                {
+                    string tagName = txtTagsPrefix.Text +
+                                     plcDataRow.StructuredName;
+
+
+                    switch (plcDataRow.DataType)
+                    {
+                        case S7DataRowType.BOOL:
+                            tags += myDB.SymbolOrName + "." + plcDataRow.StructuredName + ";" + myDB.BlockNumber + ";" +
+                                    plcDataRow.BlockAddress.ByteAddress.ToString() + ";" + "1" + ";" +
+                                    plcDataRow.BlockAddress.BitAddress.ToString() + "\r\n";
+                            break;
+                        case S7DataRowType.INT:
+
+                            break;
+                        case S7DataRowType.DINT:
+                            break;
+
+                        case S7DataRowType.WORD:
+
+                            break;
+                        case S7DataRowType.DWORD:
+
+                            break;
+                        case S7DataRowType.BYTE:
+
+                            break;
+                        case S7DataRowType.REAL:
+                            tags += myDB.SymbolOrName + "." + plcDataRow.StructuredName + ";" + myDB.BlockNumber + ";" +
+                                    plcDataRow.BlockAddress.ByteAddress.ToString() + ";" + "2" + ";" +
+                                    "0" + "\r\n";
+                            break;
+                        case S7DataRowType.CHAR:
+
+                            break;
+                        case S7DataRowType.COUNTER:
+
+                            break;
+                        case S7DataRowType.DATE:
+
+                            break;
+                        case S7DataRowType.DATE_AND_TIME:
+
+                            break;
+                        case S7DataRowType.S5TIME:
+
+                            break;
+                        case S7DataRowType.STRING:
+
+                            break;
+                        case S7DataRowType.TIME:
+
+                            break;
+                        case S7DataRowType.TIME_OF_DAY:
+
+                            break;
+                        case S7DataRowType.TIMER:
+
+                            break;
+                    }
                 }
             }
             string filename = "";
