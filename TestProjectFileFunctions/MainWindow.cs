@@ -431,6 +431,7 @@ namespace JFK_VarTab
                         //if (mnuExpandDatablockArrays.Checked)
                         //    expRow = myBlk.GetArrayExpandedStructure(new S7DataBlockExpandOptions() { ExpandCharArrays = false });
 
+                        checkBox1.Checked = mnuExpandDatablockArrays.Checked;
                         dataBlockViewControl.ExpandDataBlockArrays = mnuExpandDatablockArrays.Checked;
                         dataBlockViewControl.DataBlock = myBlk;
 

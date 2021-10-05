@@ -656,7 +656,7 @@
             this.convertCallsToolStripMenuItem,
             this.mnuExpandDatablockArrays});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
             // convertCallsToolStripMenuItem
@@ -670,7 +670,6 @@
             // 
             // mnuExpandDatablockArrays
             // 
-            this.mnuExpandDatablockArrays.Enabled = false;
             this.mnuExpandDatablockArrays.Name = "mnuExpandDatablockArrays";
             this.mnuExpandDatablockArrays.Size = new System.Drawing.Size(204, 22);
             this.mnuExpandDatablockArrays.Text = "Expand Datablock Arrays";

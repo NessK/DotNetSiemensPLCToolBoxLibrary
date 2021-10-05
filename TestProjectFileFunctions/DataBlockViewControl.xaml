@@ -91,6 +91,7 @@
                   Margin="0,30,0,0"
                   Padding="0">
             <TreeView.Resources>
+                
                 <HierarchicalDataTemplate DataType="{x:Type step7V11:TIADataRow}" ItemsSource="{Binding Children}">
                     <Grid Margin="0">
                         <StackPanel Margin="0" Orientation="Horizontal">
@@ -221,6 +222,7 @@
                         </StackPanel>
                     </Grid>
                 </HierarchicalDataTemplate>
+                
             </TreeView.Resources>
 
             <TreeView.ItemsPanel>
@@ -230,7 +232,7 @@
             </TreeView.ItemsPanel>
         </TreeView>
         <RadioButton x:Name="chkProjectString" Content="Structure from Project String" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" IsChecked="True" Checked="chkProjectString_Checked" Visibility="Hidden"/>
-        <RadioButton x:Name="chkMC7Code" Content="Structure from MC7 Code" HorizontalAlignment="Left" Margin="262,5,0,0" VerticalAlignment="Top" Checked="chkMC7Code_Checked" Visibility="Hidden"/>
+       
 
 
     </Grid>

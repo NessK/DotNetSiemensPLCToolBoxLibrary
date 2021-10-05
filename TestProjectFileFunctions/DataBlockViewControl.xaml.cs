@@ -85,11 +85,7 @@ namespace TestProjectFileFunctions
             InitializeComponent();
         }
 
-        private void chkMC7Code_Checked(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (_DataBlock is S7DataBlock) 
-                MyTree.ItemsSource = new List<S7DataRow>() { ((S7DataBlock)_DataBlock).StructureFromMC7 };
-        }
+       
 
         private void chkProjectString_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
