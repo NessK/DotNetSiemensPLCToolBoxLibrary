@@ -50,6 +50,7 @@ using Microsoft.Win32;
 using ThreadState = System.Threading.ThreadState;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Text;
 
 /*
  * Todo: List Online Partners
@@ -166,6 +167,8 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
 
         private FetchWriteConnection _fetchWriteConnection;
 
+        public bool VerboseLogging { get; set; }
+
         private async Task ConnectAsync(TimeSpan connectTimeout)
         {
             _fds.rfd = IntPtr.Zero;
@@ -237,7 +240,7 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
 
                 //This Jump mark is used when the Netlink Reset is activated!
                 NLAgain:
-
+                var connectionType = (int)_configuration.ConnectionType;
                 #region Setup Port/Adapter
                 //LibNodave Verbindung aufbauen
                 switch (_configuration.ConnectionType)
@@ -260,6 +263,7 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
                     case LibNodaveConnectionTypes.Use_Step7_DLL:
                     case LibNodaveConnectionTypes.Use_Step7_DLL_Without_TCP:
                     case LibNodaveConnectionTypes.Use_Step7_DLL_Automatic_TCP_Detection:
+                        connectionType = 50;
                         _errorCodeConverter = libnodave.daveStrerror;
                         _fds.rfd = libnodave.openS7online(_configuration.EntryPoint, 0);
                         if (_fds.rfd.ToInt32() == -1)
@@ -330,7 +334,7 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
                 if ((int)_configuration.ConnectionType < 9000) //Enums > 9000 are Managed implemntations
                 {
                     //Dave Interface Erzeugen
-                    _di = new libnodave.daveInterface(_fds, _configuration.ConnectionName, _configuration.LokalMpi, (int)_configuration.ConnectionType, (int)_configuration.BusSpeed);
+                    _di = new libnodave.daveInterface(_fds, _configuration.ConnectionName, _configuration.LokalMpi, connectionType, (int)_configuration.BusSpeed);
 
                     //Timeout setzen...
                     _di.setTimeout((int)_configuration.TimeoutMicroseconds); //WARNING! setTimeout needs value in Microseconds
@@ -2266,7 +2270,6 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
             }
         }
 
-
         public int? ForcedPduSize { get; set; }
 
         private int GetPduSize()
@@ -2275,335 +2278,6 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
                 return ForcedPduSize.Value;
 
             return _dc.getMaxPDULen();
-        }
-
-        /// <summary>
-        /// A new impl. of read Values...
-        /// Need to test it befor, maybe I switch to this....
-        /// </summary>
-        /// <param name="valueList"></param>
-        /// <param name="useReadOptimization"></param>
-        private void _TestNewReadValues(IEnumerable<PLCTag> valueList, bool useReadOptimization)
-        {
-            if (Configuration.ConnectionType == LibNodaveConnectionTypes.AS_511) //AS511
-            {
-                foreach (var plcTag in valueList)
-                {
-                    this.ReadValue(plcTag);
-                }
-                return;
-            }
-
-            lock (lockObj)
-            {
-                //Got through the list of values
-                //Order them at first with the DB, then the byte address
-                //If the Byte count of a tag is uneven, add 1
-                //Then Look if Some Values lay in othe values or if the byte adress difference is <= 4
-                //if it is so, create a replacement value wich reads the bytes and stores at wich tags are in this value and at wich adress
-                //read the tags!
-                //Look, that the byte count gets not bigger than a pdu!            
-
-                CheckConnection();
-
-                if (_dc != null)
-                {
-
-                    IEnumerable<PLCTag> readTagList = valueList;
-
-                    #region Optimize Reading List....
-
-                    if (useReadOptimization)
-                    {
-                        List<PLCTag> orderedList = new List<PLCTag>();
-                        orderedList.AddRange(valueList);
-                        orderedList.Sort(new SorterForPLCTags());
-
-                        List<PLCTag> intReadTagList = new List<PLCTag>();
-
-                        //Go through the List of PLC Tags and Combine the ones, where the Byte Addres does not differ more than 4 Bytes...
-                        MemoryArea oldDataSource = 0;
-                        int oldDB = 0, oldByteAddress = 0, oldLen = 0;
-                        int cntCombinedTags = 0;
-                        PLCTag lastTag = null;
-                        PLCTagReadHelper rdHlp = new PLCTagReadHelper() { TagDataType = TagDataType.ByteArray };
-                        foreach (PLCTag plcTag in orderedList)
-                        {
-                            if (cntCombinedTags == 0)
-                            {
-                                oldDataSource = plcTag.TagDataSource;
-                                oldDB = plcTag.DataBlockNumber;
-                                oldByteAddress = plcTag.ByteAddress;
-                                oldLen = plcTag._internalGetSize();
-                                lastTag = plcTag;
-                                cntCombinedTags++;
-                            }
-                            else
-                            {
-                                if (oldDataSource == plcTag.TagDataSource &&
-                                    (oldDataSource != MemoryArea.Datablock || oldDB == plcTag.DataBlockNumber) &&
-                                    plcTag.ByteAddress <= oldByteAddress + oldLen + 4)
-                                {
-                                    //todo: test if this is correct
-                                    if (cntCombinedTags == 1) rdHlp.PLCTags.Add(lastTag, 0);
-
-                                    cntCombinedTags++;
-                                    int newlen = plcTag._internalGetSize() + (plcTag.ByteAddress - oldByteAddress);
-                                    oldLen = oldLen < newlen ? newlen : oldLen;
-                                    if (oldLen % 2 != 0) oldLen++;
-                                    rdHlp.PLCTags.Add(plcTag, plcTag.ByteAddress - oldByteAddress);
-                                    rdHlp.ByteAddress = oldByteAddress;
-                                    rdHlp.ArraySize = oldLen;
-                                    rdHlp.TagDataSource = oldDataSource;
-                                    rdHlp.DataBlockNumber = oldDB;
-                                }
-                                else
-                                {
-                                    if (cntCombinedTags > 1)
-                                    {
-                                        intReadTagList.Add(rdHlp);
-                                        rdHlp = new PLCTagReadHelper() { TagDataType = TagDataType.ByteArray };
-                                        cntCombinedTags = 0;
-                                    }
-                                    else
-                                    {
-                                        intReadTagList.Add(lastTag);
-                                        cntCombinedTags = 0;
-                                    }
-
-                                    oldDataSource = plcTag.TagDataSource;
-                                    oldDB = plcTag.DataBlockNumber;
-                                    oldByteAddress = plcTag.ByteAddress;
-                                    oldLen = plcTag._internalGetSize();
-                                    if (oldLen % 2 != 0) oldLen++;
-                                    lastTag = plcTag;
-                                    cntCombinedTags++;
-                                }
-                            }
-
-                        }
-                        if (cntCombinedTags > 1) intReadTagList.Add(rdHlp);
-                        else if (cntCombinedTags == 1) intReadTagList.Add(lastTag);
-
-                        readTagList = intReadTagList;
-                    }
-
-                    #endregion
-
-
-
-                    //Count how Many Bytes from the PLC should be read and create a Byte Array for the Values
-                    int completeReadSize = 0;
-                    foreach (var libNoDaveValue in readTagList)
-                    {
-                        completeReadSize += libNoDaveValue._internalGetSize();
-                    }
-                    byte[] completeData = new byte[completeReadSize];
-
-
-                    //Get the Maximum Answer Len for One PDU
-                    int maxReadSize = GetPduSize() - 32; //32 = Header
-
-                    //int maxReadVar = maxReadSize / 12; //12 Header Größe Variablenanfrage
-
-
-                    int positionInCompleteData = 0;
-                    int akVar = 0;
-
-                    int akByteAddress = 0;
-
-                    //libnodave.PDU myPDU = _dc.prepareReadRequest();
-                    List<pduRead> listPDU = new List<pduRead>();
-                    pduRead curReadPDU = new pduRead(_dc.prepareReadRequest());
-                    listPDU.Add(curReadPDU);
-                    int HeaderTagSize = 4; //Todo: If I use the Short Request, the Header in the answer is 5 Bytes, not 4! Look how to do this...
-
-                    foreach (var libNoDaveValue in readTagList)
-                    {
-                        bool shortDbRequest = false;
-                        int askSize = 12;
-                        HeaderTagSize = 4;
-                        if (libNoDaveValue.TagDataSource == MemoryArea.Datablock && this._configuration.UseShortDataBlockRequest)
-                        {
-                            shortDbRequest = true;
-                            askSize = 7;
-                            HeaderTagSize = 5;
-                        }
-
-                        bool symbolicTag = false;
-
-                        if (!string.IsNullOrEmpty(libNoDaveValue.SymbolicAccessKey))
-                        {
-                            askSize = HeaderTagSize + libNoDaveValue.SymbolicAccessKey.Length;
-                            symbolicTag = true;
-                        }
-                        //Save the Byte Address in anthoer Variable, because if we split the Read Request, we need not the real Start Address
-                        akByteAddress = libNoDaveValue.ByteAddress;
-
-                        if (libNoDaveValue.TagDataSource != MemoryArea.Datablock &&
-                            libNoDaveValue.TagDataSource != MemoryArea.InstanceDatablock)
-                            libNoDaveValue.DataBlockNumber = 0;
-
-                        int readSize = libNoDaveValue._internalGetSize();
-
-                        //tryAgain:
-                        while (readSize > 0)
-                        {
-
-                            int readSizeWithHeader = readSize + HeaderTagSize; //HeaderTagSize Bytes Header for each Tag
-                            readSizeWithHeader += readSizeWithHeader % 2;//Ungerade Anzahl Bytes, noch eines dazu...
-
-                            var currentAskSize = askSize;       //
-                            if (curReadPDU.lastRequestWasAUnevenRequest)
-                            {
-                                currentAskSize++;
-                            }
-
-                            int restBytes = Math.Min(maxReadSize - curReadPDU.gesReadSize, readSizeWithHeader) - HeaderTagSize;//len read: or real full len, or remaining free
-
-                            if (restBytes < HeaderTagSize || symbolicTag || (curReadPDU.gesReadSize > 0 && libNoDaveValue.DontSplitValue && curReadPDU.gesReadSize + readSizeWithHeader > maxReadSize))
-                            {//or remaining free < HeaderTagSize, or Simbol, or Value don't split and full value can don't read without split and PDU nit empty (if PDU empty Value DontSplitValue is spliting)
-                                listPDU.Add(curReadPDU = new pduRead(_dc.prepareReadRequest()));//current PDU is END, create new PDU
-                                continue;//to while (readSize > 0)
-                            }
-
-                            if (curReadPDU.lastRequestWasAUnevenRequest)
-                            {
-                                //curReadPDU.gesAskSize++;
-                                curReadPDU.pdu.daveAddFillByteToReadRequest();
-                                curReadPDU.lastRequestWasAUnevenRequest = false;
-                            }
-
-                            if (symbolicTag)
-                            {
-                                curReadPDU.usedShortRequest.Add(false);
-                                curReadPDU.pdu.addSymbolVarToReadRequest(libNoDaveValue.SymbolicAccessKey);
-                            }
-                            //Only at the rest of the bytes to the next read request, and increase the start address!  
-                            else if (shortDbRequest)
-                            {
-                                curReadPDU.usedShortRequest.Add(true);
-                                curReadPDU.lastRequestWasAUnevenRequest = true;
-                                curReadPDU.pdu.addDbRead400ToReadRequest(libNoDaveValue.DataBlockNumber, akByteAddress, restBytes);
-                            }
-                            else
-                            {
-                                curReadPDU.usedShortRequest.Add(false);
-                                curReadPDU.pdu.addVarToReadRequest(Convert.ToInt32(libNoDaveValue.TagDataSource), libNoDaveValue.DataBlockNumber, akByteAddress, restBytes);
-                            }
-
-                            readSize -= restBytes;
-
-                            curReadPDU.gesReadSize += restBytes + HeaderTagSize;//readSizeWithHeader
-                            //if (symbolicTag)
-                            //    curReadPDU.gesAskSize += askSize;
-
-                            akByteAddress += restBytes;
-
-                            curReadPDU.readenSizes.Add(restBytes);
-                            curReadPDU.anzVar++;
-                            //listPDU.Add(curReadPDU = new pduRead(_dc.prepareReadRequest()));//current PDU is FULL, create new PDU
-                            //useresult muss noch programmiert werden.
-                        }
-                    }
-                    //if ( curReadPDU.gesReadSize > 0)
-                    //    listPDU.Add(curReadPDU);
-
-                    List<bool> NotExistedValue = new List<bool>();
-
-                    //Only for debugging...
-
-                    foreach (var cPDU in listPDU)
-                    {
-                        if (cPDU.gesReadSize > 0)
-                        {
-                            var rs = _dc.getResultSet();
-                            int res;
-                            lock (lockObj)
-                            {
-                                res = _dc.execReadRequest(cPDU.pdu, rs);
-                            }
-
-                            if (AutoDisconnect && (res == -1025 || res == -128))
-                            {
-                                if (Logger != null)
-                                    Logger("(1) Auto Disconnect cause of :" + libnodave.daveStrerror(res));
-                                this.Disconnect();
-                                return;
-                            }
-                            else if (res != 0 && res != 10)
-                                throw new PLCException(res);
-
-                            //positionInCompleteData = 0;
-                            //Save the Read Data to a User Byte Array (Because we use this in the libnodavevalue class!)
-
-                            for (akVar = 0; akVar < cPDU.anzVar; akVar++)
-                            {
-                                byte[] myBuff = new byte[ /* gesReadSize */cPDU.readenSizes[akVar] + 1];
-
-                                lock (lockObj)
-                                {
-                                    res = _dc.useResultBuffer(rs, akVar, myBuff);
-                                }
-
-                                if (res == 10 || res == 5)
-                                {
-                                    NotExistedValue.Add(true);
-                                }
-                                else if (res != 0)
-                                {
-                                    var details = Environment.NewLine + Environment.NewLine + "AnzVar " +
-                                                  cPDU.anzVar.ToString() + "; akVar " + akVar.ToString() +
-                                                  Environment.NewLine;
-
-                                    details += "readsizes " + string.Join(";", cPDU.readenSizes) + Environment.NewLine;
-                                    details += "usedShortRequest " + string.Join(";", cPDU.usedShortRequest) + Environment.NewLine;
-                                    throw new PLCException("Error (1): " + _errorCodeConverter(res) + details, res);
-                                }
-                                else
-                                {
-                                    int myBuffStart = 0;
-                                    if (cPDU.usedShortRequest[akVar])
-                                        myBuffStart = 1;
-
-                                    if (cPDU.usedShortRequest[akVar] && (myBuff[0] == 10 || myBuff[0] == 5))
-                                    {
-                                        NotExistedValue.Add(true);
-                                    }
-                                    else
-                                    {
-                                        NotExistedValue.Add(false);
-                                        Array.Copy(myBuff, myBuffStart, completeData, positionInCompleteData, cPDU.readenSizes[akVar]);
-                                        positionInCompleteData += cPDU.readenSizes[akVar];
-                                    }
-                                    //for (int n = 0; n < readenSizes[akVar]; n++)
-                                    //{
-                                    //    completeData[positionInCompleteData++] = myBuff[n]; // Convert.ToByte(_dc.getU8());
-                                    //}
-                                }
-                            }
-                        }
-                    }
-
-                    int buffPos = 0;
-                    int nr = 0;
-                    foreach (var value in readTagList)
-                    {
-                        if (!NotExistedValue[nr])
-                        {
-                            value.ItemDoesNotExist = false;
-                            value._readValueFromBuffer(completeData, buffPos);
-                            buffPos += value._internalGetSize();
-                        }
-                        else
-                        {
-                            value.ItemDoesNotExist = true;
-                            value._setValueProp = null;
-                        }
-                        nr++;
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -2807,11 +2481,10 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
                     if (maxReadSize > 208 && readTagList.First() is PLCNckTag && ((PLCNckTag)readTagList.First()).NckArea == NCK_Area.AreaFeedDrive)
                         maxReadSize = 208;
 
-                    //int maxReadVar = maxReadSize / 12; //12 Header Größe Variablenanfrage
-
-                    List<int> readenSizes = new List<int>(50);
-                    List<bool> usedShortRequest = new List<bool>(50);
-                    List<bool> tagWasSplitted = new List<bool>(50);
+                    int maxReadVar = (maxReadSize / (this.Configuration.UseShortDataBlockRequest ? 7 : 12)) + 1; //12 Header Größe Variablenanfrage
+                    List<int> readenSizes = new List<int>(maxReadVar);
+                    List<bool> usedShortRequest = new List<bool>(maxReadVar);
+                    List<bool> tagWasSplitted = new List<bool>(maxReadVar);
                     //normaly on a 400 CPU, max 38 Tags fit into a PDU, so this List as a Start would be enough
                     //With Short Request this could be a little more so we use 50
 
@@ -2831,7 +2504,7 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
                     Monitor.Enter(lockObj, ref lockObtained);
                     var myPDU = _dc.prepareReadRequest();
 
-                    var currentRead = new List<string>();
+                    var currentRead = new StringBuilder();
 
                     foreach (var libNoDaveValue in readTagList)
                     {
@@ -2894,13 +2567,15 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
                                     {
                                         usedShortRequest.Add(true);
                                         lastRequestWasAUnevenRequest = true;
-                                        currentRead.Add(string.Format("shortDbRequest, db:{0}, byte:{1}, size{2}", libNoDaveValue.DataBlockNumber, akByteAddress, readSize));
+                                        if (VerboseLogging)
+                                            currentRead.AppendFormat("shortDbRequest, db:{0}, byte:{1}, size{2}", libNoDaveValue.DataBlockNumber, akByteAddress, readSize);
                                         myPDU.addDbRead400ToReadRequest(libNoDaveValue.DataBlockNumber, akByteAddress, restBytes);
                                     }
                                     else
                                     {
                                         usedShortRequest.Add(false);
-                                        currentRead.Add(string.Format("addVarToReadRequest, source:{0}, db:{1}, byte:{2}, size{3}", libNoDaveValue.TagDataSource, libNoDaveValue.DataBlockNumber, akByteAddress, readSize));
+                                        if (VerboseLogging)
+                                            currentRead.AppendFormat("addVarToReadRequest, source:{0}, db:{1}, byte:{2}, size{3}", libNoDaveValue.TagDataSource, libNoDaveValue.DataBlockNumber, akByteAddress, readSize);
                                         myPDU.addVarToReadRequest(Convert.ToInt32(libNoDaveValue.TagDataSource), libNoDaveValue.DataBlockNumber, akByteAddress, restBytes);
                                     }
 
@@ -2933,7 +2608,19 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
                             if (AutoDisconnect && (res == -1025 || res == -128))
                             {
                                 if (Logger != null)
-                                    Logger("(2) Auto Disconnect cause of :" + libnodave.daveStrerror(res));
+                                {
+                                    var details = Environment.NewLine + Environment.NewLine + "AnzVar " +
+                                                   anzVar.ToString() + "; " +
+                                                   Environment.NewLine;
+
+                                    details += "readsizes " + string.Join(";", readenSizes) + Environment.NewLine;
+                                    details += "usedShortRequest " + string.Join(";", usedShortRequest) + Environment.NewLine;
+                                    details += Environment.NewLine + Environment.NewLine +
+                                               currentRead.ToString() + Environment.NewLine +
+                                               Environment.NewLine;
+
+                                    Logger("(2) Auto Disconnect cause of :" + libnodave.daveStrerror(res) + details);
+                                }
                                 this.autoDisconnect();
                                 return;
                             }
@@ -2960,7 +2647,7 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
                                     details += "readsizes " + string.Join(";", readenSizes) + Environment.NewLine;
                                     details += "usedShortRequest " + string.Join(";", usedShortRequest) + Environment.NewLine;
                                     details += Environment.NewLine + Environment.NewLine +
-                                               string.Join(Environment.NewLine, currentRead) + Environment.NewLine +
+                                               currentRead.ToString() + Environment.NewLine +
                                                Environment.NewLine;
 
                                     throw new PLCException("Error (2): " + _errorCodeConverter(res) + details, res);
@@ -2991,7 +2678,8 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
 
                             //rs = null;
                             //myPDU = null;
-                            currentRead = new List<string>();
+                            if (currentRead.Length > 0)
+                                currentRead.Clear();
                             anzVar = 0;
                             gesAskSize = 0;
                             Monitor.Enter(lockObj, ref lockObtained);
@@ -3036,14 +2724,16 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
                             usedShortRequest.Add(true);
                             tagWasSplitted.Add(false);
                             lastRequestWasAUnevenRequest = true;
-                            currentRead.Add(string.Format("shortDbRequest, db:{0}, byte:{1}, size{2}", libNoDaveValue.DataBlockNumber, akByteAddress, readSize));
+                            if (VerboseLogging)
+                                currentRead.AppendFormat("shortDbRequest, db:{0}, byte:{1}, size{2}", libNoDaveValue.DataBlockNumber, akByteAddress, readSize);
                             myPDU.addDbRead400ToReadRequest(libNoDaveValue.DataBlockNumber, akByteAddress, readSize);
                         }
                         else
                         {
                             usedShortRequest.Add(false);
                             tagWasSplitted.Add(false);
-                            currentRead.Add(string.Format("addVarToReadRequest, source:{0}, db:{1}, byte:{2}, size{3}", libNoDaveValue.TagDataSource, libNoDaveValue.DataBlockNumber, akByteAddress, readSize));
+                            if (VerboseLogging)
+                                currentRead.AppendFormat("addVarToReadRequest, source:{0}, db:{1}, byte:{2}, size{3}", libNoDaveValue.TagDataSource, libNoDaveValue.DataBlockNumber, akByteAddress, readSize);
                             myPDU.addVarToReadRequest(Convert.ToInt32(libNoDaveValue.TagDataSource), libNoDaveValue.DataBlockNumber, akByteAddress, readSize);
                         }
                     }
@@ -3058,7 +2748,17 @@ namespace DotNetSiemensPLCToolBoxLibrary.Communication
                         if (AutoDisconnect && (res == -1025 || res == -128))
                         {
                             if (Logger != null)
-                                Logger("(3) Auto Disconnect cause of :" + libnodave.daveStrerror(res));
+                            {
+                                var details = Environment.NewLine + Environment.NewLine + "AnzVar " +
+                                                   anzVar.ToString() + "; " +
+                                                   Environment.NewLine;
+
+                                details += "variables " + string.Join(";", readTagList.Select(x => x.ValueName ?? "")) + Environment.NewLine;
+                                details += "readsizes " + string.Join(";", readenSizes) + Environment.NewLine;
+                                details += "usedShortRequest " + string.Join(";", usedShortRequest) + Environment.NewLine;
+
+                                Logger("(3) Auto Disconnect cause of :" + libnodave.daveStrerror(res) + details);
+                            }
                             this.autoDisconnect();
                             return;
                         }
